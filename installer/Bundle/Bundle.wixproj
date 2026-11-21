@@ -1,0 +1,14 @@
+<Project Sdk="WixToolset.Sdk/5.0.2">
+  <!-- SensorPanelSetup.exe: PawnIO (downloaded only when missing) + the app's MSI. Built by installer/build.ps1. -->
+  <PropertyGroup>
+    <OutputType>Bundle</OutputType>
+    <OutputName>SensorPanelSetup</OutputName>
+    <Platform>x64</Platform>
+    <ProductVersion Condition="'$(ProductVersion)' == ''">0.1.0</ProductVersion>
+    <DefineConstants>MsiPath=$(MsiPath);ProductVersion=$(ProductVersion)</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Bal.wixext" Version="5.0.2" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="5.0.2" />
+  </ItemGroup>
+</Project>

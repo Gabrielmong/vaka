@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 800,
+    "height": 480,
+    "background": "#f4efe6"
+  },
+  "scale": "fit",
+  "aliases": {},
+  "static": [
+    {
+      "type": "line",
+      "x": 80,
+      "y": 334,
+      "w": 0,
+      "h": 0,
+      "group": "Strip",
+      "x2": 720,
+      "y2": 334,
+      "color": "#d8d0c3",
+      "width": 1,
+      "roundCap": false
+    },
+    {
+      "type": "text",
+      "x": 80,
+      "y": 362,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "CPU",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 600,
+      "align": "center",
+      "color": "#8a8174"
+    },
+    {
+      "type": "text",
+      "x": 240,
+      "y": 362,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "CPU LOAD",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 600,
+      "align": "center",
+      "color": "#8a8174"
+    },
+    {
+      "type": "text",
+      "x": 400,
+      "y": 362,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "GPU",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 600,
+      "align": "center",
+      "color": "#8a8174"
+    },
+    {
+      "type": "text",
+      "x": 560,
+      "y": 362,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "GPU LOAD",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 600,
+      "align": "center",
+      "color": "#8a8174"
+    }
+  ],
+  "widgets": [
+    {
+      "type": "text",
+      "x": 0,
+      "y": 64,
+      "w": 800,
+      "h": 0,
+      "group": "Time",
+      "text": "{time:HH:mm}",
+      "font": "Segoe UI Variable",
+      "size": 190,
+      "weight": 300,
+      "align": "center",
+      "color": "#2b2b2b"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 262,
+      "w": 800,
+      "h": 0,
+      "group": "Time",
+      "text": "{date:dddd d MMMM}",
+      "font": "Segoe UI Variable",
+      "size": 30,
+      "weight": 400,
+      "align": "center",
+      "color": "#6b645a"
+    },
+    {
+      "type": "text",
+      "x": 80,
+      "y": 386,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "{cpu.temp:0}°",
+      "font": "Segoe UI Variable",
+      "size": 34,
+      "weight": 400,
+      "align": "center",
+      "color": "#2b2b2b",
+      "value": "cpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 120,
+      "y": 440,
+      "w": 80,
+      "h": 3,
+      "group": "Strip",
+      "value": "cpu.temp",
+      "min": 20,
+      "max": 100,
+      "color": "#2b2b2b",
+      "track": "#e2d9cb",
+      "radius": 1.5,
+      "vertical": false
+    },
+    {
+      "type": "text",
+      "x": 240,
+      "y": 386,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "{cpu.load:0}%",
+      "font": "Segoe UI Variable",
+      "size": 34,
+      "weight": 400,
+      "align": "center",
+      "color": "#2b2b2b",
+      "value": "cpu.load"
+    },
+    {
+      "type": "bar",
+      "x": 280,
+      "y": 440,
+      "w": 80,
+      "h": 3,
+      "group": "Strip",
+      "value": "cpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#2b2b2b",
+      "track": "#e2d9cb",
+      "radius": 1.5,
+      "vertical": false
+    },
+    {
+      "type": "text",
+      "x": 400,
+      "y": 386,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "{gpu.temp:0}°",
+      "font": "Segoe UI Variable",
+      "size": 34,
+      "weight": 400,
+      "align": "center",
+      "color": "#2b2b2b",
+      "value": "gpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 440,
+      "y": 440,
+      "w": 80,
+      "h": 3,
+      "group": "Strip",
+      "value": "gpu.temp",
+      "min": 20,
+      "max": 100,
+      "color": "#2b2b2b",
+      "track": "#e2d9cb",
+      "radius": 1.5,
+      "vertical": false
+    },
+    {
+      "type": "text",
+      "x": 560,
+      "y": 386,
+      "w": 160,
+      "h": 0,
+      "group": "Strip",
+      "text": "{gpu.load:0}%",
+      "font": "Segoe UI Variable",
+      "size": 34,
+      "weight": 400,
+      "align": "center",
+      "color": "#2b2b2b",
+      "value": "gpu.load"
+    },
+    {
+      "type": "bar",
+      "x": 600,
+      "y": 440,
+      "w": 80,
+      "h": 3,
+      "group": "Strip",
+      "value": "gpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#2b2b2b",
+      "track": "#e2d9cb",
+      "radius": 1.5,
+      "vertical": false
+    }
+  ]
+}

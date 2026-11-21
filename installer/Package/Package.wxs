@@ -1,0 +1,76 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  <!-- Never change the UpgradeCode: it is how a newer setup finds and replaces an older install. -->
+  <Package Name="Sensor Panel" Manufacturer="Sensor Panel" Version="$(ProductVersion)"
+           UpgradeCode="6028b049-acef-4802-bff7-30016d7d90da" Scope="perMachine">
+    <!-- Same-version upgrades too: a rebuild with an unchanged version must replace, not install side by side. -->
+    <MajorUpgrade AllowSameVersionUpgrades="yes"
+                  DowngradeErrorMessage="A newer version of Sensor Panel is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="SensorPanel" />
+    </StandardDirectory>
+
+    <ComponentGroup Id="AppFiles" Directory="INSTALLFOLDER">
+      <!-- The exe is authored explicitly so the custom actions below can run it. -->
+      <Component>
+        <File Id="SensorPanelExe" Source="$(AppDir)\SensorPanel.exe" KeyPath="yes" />
+        <!-- Where the bundle's "Launch" button finds the exe to start elevated. -->
+        <RegistryValue Root="HKLM" Key="SOFTWARE\SensorPanel" Name="LaunchPath" Type="string"
+                       Value="[#SensorPanelExe]" />
+      </Component>
+      <Files Include="$(AppDir)\**">
+        <Exclude Files="$(AppDir)\SensorPanel.exe" />
+        <Exclude Files="$(AppDir)\**\*.pdb" />
+      </Files>
+    </ComponentGroup>
+
+    <Feature Id="Main">
+      <ComponentGroupRef Id="AppFiles" />
+    </Feature>
+
+    <!--
+      A running panel (and its PresentMon child) holds the files and, as its working directory, the folder.
+      Stop it on install (an older copy may run), upgrade and uninstall:
+      - StopPanelEarly, before InstallValidate, so the files-in-use check finds nothing to wait on (the setup
+        bundle runs this MSI elevated, so it can end the elevated panel);
+      - StopPanel, first in the elevated script, as a backstop when the MSI is run some other way.
+      It waits until the processes are really gone (PresentMon exits via the panel's job object): a process that
+      is still exiting during InstallValidate makes it raise a files-in-use prompt, which under the setup bundle
+      stalls ~95 s even when quiet. Only our own presentmon.exe is waited on; other PresentMon copies are left alone.
+    -->
+    <?define StopCmd = ""[System64Folder]WindowsPowerShell\v1.0\powershell.exe" -NoP -NonI -C "$s=@(ps SensorPanel -EA 0);$m=@(ps presentmon -EA 0|where Path -like '[INSTALLFOLDER]*');$s|kill -Force -EA 0;$s+$m|Wait-Process -Timeout 20 -EA 0"" ?>
+    <SetProperty Id="WixQuietExec64CmdLine" Sequence="execute" Before="StopPanelEarly" Value="$(StopCmd)" />
+    <CustomAction Id="StopPanelEarly" BinaryRef="Wix4UtilCA_X64" DllEntry="WixQuietExec64"
+                  Execute="immediate" Return="ignore" />
+    <SetProperty Id="StopPanel" Sequence="execute" Before="StopPanel" Value="$(StopCmd)" />
+    <CustomAction Id="StopPanel" BinaryRef="Wix4UtilCA_X64" DllEntry="WixQuietExec"
+                  Execute="deferred" Impersonate="no" Return="ignore" />
+
+    <!-- Logon task for every user (the MSI runs these as SYSTEM, so a per-user task would target SYSTEM). -->
+    <CustomAction Id="InstallStartup" FileRef="SensorPanelExe" ExeCommand="--install-startup --all-users"
+                  Execute="deferred" Impersonate="no" Return="check" />
+    <CustomAction Id="UninstallStartup" FileRef="SensorPanelExe" ExeCommand="--uninstall-startup"
+                  Execute="deferred" Impersonate="no" Return="ignore" />
+    <!-- If the install/uninstall fails later and rolls back, undo the task change too (scheduled just before each). -->
+    <CustomAction Id="RollbackInstallStartup" FileRef="SensorPanelExe" ExeCommand="--uninstall-startup"
+                  Execute="rollback" Impersonate="no" Return="ignore" />
+    <CustomAction Id="RollbackUninstallStartup" FileRef="SensorPanelExe" ExeCommand="--install-startup --all-users"
+                  Execute="rollback" Impersonate="no" Return="ignore" />
+
+    <InstallExecuteSequence>
+      <Custom Action="StopPanelEarly" Before="InstallValidate" />
+      <Custom Action="StopPanel" After="InstallInitialize" />
+      <!-- Not during a major upgrade's removal of the old version: the new version re-registers right after. -->
+      <Custom Action="RollbackUninstallStartup" Before="UninstallStartup"
+              Condition="REMOVE~=&quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" />
+      <Custom Action="UninstallStartup" Before="RemoveFiles"
+              Condition="REMOVE~=&quot;ALL&quot; AND NOT UPGRADINGPRODUCTCODE" />
+      <!-- A failed upgrade restores the old version at the same path, whose task must stay. -->
+      <Custom Action="RollbackInstallStartup" Before="InstallStartup"
+              Condition="NOT REMOVE~=&quot;ALL&quot; AND NOT WIX_UPGRADE_DETECTED" />
+      <Custom Action="InstallStartup" After="InstallFiles" Condition="NOT REMOVE~=&quot;ALL&quot;" />
+    </InstallExecuteSequence>
+  </Package>
+</Wix>

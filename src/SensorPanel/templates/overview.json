@@ -1,0 +1,858 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 800,
+    "height": 480,
+    "background": "#101214"
+  },
+  "scale": "fit",
+  "aliases": {},
+  "static": [
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 16,
+      "w": 252,
+      "h": 160,
+      "group": "CPU",
+      "fill": "#1a1d21",
+      "radius": 10,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 28,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "CPU",
+      "font": "Segoe UI",
+      "size": 11,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 46,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "$cpu.name",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "rect",
+      "x": 276,
+      "y": 16,
+      "w": 252,
+      "h": 160,
+      "group": "GPU",
+      "fill": "#1a1d21",
+      "radius": 10,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 290,
+      "y": 28,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "GPU",
+      "font": "Segoe UI",
+      "size": 11,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "text",
+      "x": 290,
+      "y": 46,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "$gpu.name",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "rect",
+      "x": 536,
+      "y": 16,
+      "w": 248,
+      "h": 160,
+      "group": "Time",
+      "fill": "#1a1d21",
+      "radius": 10,
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 184,
+      "w": 380,
+      "h": 120,
+      "group": "Memory",
+      "fill": "#1a1d21",
+      "radius": 10,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 198,
+      "w": 0,
+      "h": 0,
+      "group": "Memory",
+      "text": "RAM",
+      "font": "Segoe UI",
+      "size": 11,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 250,
+      "w": 0,
+      "h": 0,
+      "group": "Memory",
+      "text": "VRAM",
+      "font": "Segoe UI",
+      "size": 11,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "rect",
+      "x": 404,
+      "y": 184,
+      "w": 380,
+      "h": 120,
+      "group": "Network",
+      "fill": "#1a1d21",
+      "radius": 10,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 418,
+      "y": 198,
+      "w": 0,
+      "h": 0,
+      "group": "Network",
+      "text": "NETWORK",
+      "font": "Segoe UI",
+      "size": 11,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 312,
+      "w": 768,
+      "h": 152,
+      "group": "Drives",
+      "fill": "#1a1d21",
+      "radius": 10,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 326,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive1",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "text",
+      "x": 218,
+      "y": 326,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive2",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "text",
+      "x": 406,
+      "y": 326,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive3",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "text",
+      "x": 594,
+      "y": 326,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive4",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "line",
+      "x": 30,
+      "y": 404,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "x2": 770,
+      "y2": 404,
+      "color": "#2b3036",
+      "width": 1,
+      "roundCap": false
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 422,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "SYSTEM DISK",
+      "font": "Segoe UI",
+      "size": 11,
+      "weight": 700,
+      "align": "left",
+      "color": "#22d3ee"
+    }
+  ],
+  "widgets": [
+    {
+      "type": "text",
+      "x": 30,
+      "y": 74,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.temp:0}°",
+      "font": "Segoe UI",
+      "size": 38,
+      "weight": 600,
+      "align": "left",
+      "color": "#e5e7eb",
+      "value": "cpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 74,
+      "w": 224,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.load:0}%",
+      "font": "Segoe UI",
+      "size": 38,
+      "weight": 600,
+      "align": "right",
+      "color": "#e5e7eb",
+      "value": "cpu.load",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 30,
+      "y": 124,
+      "w": 224,
+      "h": 6,
+      "group": "CPU",
+      "value": "cpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 146,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.clock:0.00} GHz",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 146,
+      "w": 224,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.power:0} W",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 290,
+      "y": 74,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.temp:0}°",
+      "font": "Segoe UI",
+      "size": 38,
+      "weight": 600,
+      "align": "left",
+      "color": "#e5e7eb",
+      "value": "gpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 290,
+      "y": 74,
+      "w": 224,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.load:0}%",
+      "font": "Segoe UI",
+      "size": 38,
+      "weight": 600,
+      "align": "right",
+      "color": "#e5e7eb",
+      "value": "gpu.load",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 290,
+      "y": 124,
+      "w": 224,
+      "h": 6,
+      "group": "GPU",
+      "value": "gpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 290,
+      "y": 146,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.clock:0.00} GHz",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 290,
+      "y": 146,
+      "w": 224,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.power:0} W",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 536,
+      "y": 36,
+      "w": 248,
+      "h": 0,
+      "group": "Time",
+      "text": "{time:HH:mm}",
+      "font": "Segoe UI",
+      "size": 52,
+      "weight": 600,
+      "align": "center",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "text",
+      "x": 536,
+      "y": 104,
+      "w": 248,
+      "h": 0,
+      "group": "Time",
+      "text": "{date:dddd d MMM}",
+      "font": "Segoe UI",
+      "size": 14,
+      "weight": 400,
+      "align": "center",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 536,
+      "y": 140,
+      "w": 248,
+      "h": 0,
+      "group": "Time",
+      "text": "{fps:0} FPS  ·  {system.power:0} W",
+      "font": "Segoe UI",
+      "size": 14,
+      "weight": 600,
+      "align": "center",
+      "color": "#22d3ee"
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 196,
+      "w": 352,
+      "h": 0,
+      "group": "Memory",
+      "text": "{ram.used:0.0} GB used  ·  {ram.free:0.0} GB free",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "bar",
+      "x": 30,
+      "y": 220,
+      "w": 352,
+      "h": 6,
+      "group": "Memory",
+      "value": "ram.load",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 248,
+      "w": 352,
+      "h": 0,
+      "group": "Memory",
+      "text": "{vram.used:0.0} / {vram.total:0} GB",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "bar",
+      "x": 30,
+      "y": 272,
+      "w": 352,
+      "h": 6,
+      "group": "Memory",
+      "value": "vram.load",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 418,
+      "y": 222,
+      "w": 0,
+      "h": 0,
+      "group": "Network",
+      "text": "↓ {net.down:0.00} MB/s",
+      "font": "Segoe UI",
+      "size": 15,
+      "weight": 400,
+      "align": "left",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "text",
+      "x": 418,
+      "y": 252,
+      "w": 0,
+      "h": 0,
+      "group": "Network",
+      "text": "↑ {net.up:0.00} MB/s",
+      "font": "Segoe UI",
+      "size": 15,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "graph",
+      "x": 580,
+      "y": 198,
+      "w": 190,
+      "h": 92,
+      "group": "Network",
+      "value": "net.down",
+      "min": 0,
+      "max": 10,
+      "color": "#22d3ee",
+      "duration": 60,
+      "width": 1.5,
+      "fill": "#22d3ee22",
+      "gridLines": 0,
+      "autoScale": true
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 322,
+      "w": 168,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$1.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 18,
+      "weight": 600,
+      "align": "right",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "bar",
+      "x": 30,
+      "y": 356,
+      "w": 168,
+      "h": 6,
+      "group": "Drives",
+      "value": "drive.$1.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 372,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$1.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 218,
+      "y": 322,
+      "w": 168,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$2.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 18,
+      "weight": 600,
+      "align": "right",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "bar",
+      "x": 218,
+      "y": 356,
+      "w": 168,
+      "h": 6,
+      "group": "Drives",
+      "value": "drive.$2.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 218,
+      "y": 372,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$2.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 406,
+      "y": 322,
+      "w": 168,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$3.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 18,
+      "weight": 600,
+      "align": "right",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "bar",
+      "x": 406,
+      "y": 356,
+      "w": 168,
+      "h": 6,
+      "group": "Drives",
+      "value": "drive.$3.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 406,
+      "y": 372,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$3.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 594,
+      "y": 322,
+      "w": 168,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$4.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 18,
+      "weight": 600,
+      "align": "right",
+      "color": "#e5e7eb"
+    },
+    {
+      "type": "bar",
+      "x": 594,
+      "y": 356,
+      "w": 168,
+      "h": 6,
+      "group": "Drives",
+      "value": "drive.$4.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#22d3ee",
+      "track": "#2b3036",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 594,
+      "y": 372,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$4.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 400,
+      "align": "left",
+      "color": "#8b949e"
+    },
+    {
+      "type": "text",
+      "x": 130,
+      "y": 420,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "read {disk.read:0.0} MB/s   ·   write {disk.write:0.0} MB/s   ·   {disk.temp:0} °C",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#e5e7eb"
+    }
+  ]
+}

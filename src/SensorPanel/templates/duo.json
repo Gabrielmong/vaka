@@ -1,0 +1,575 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 800,
+    "height": 480,
+    "background": "#0b0f14"
+  },
+  "scale": "fit",
+  "aliases": {},
+  "static": [
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 16,
+      "w": 376,
+      "h": 300,
+      "group": "CPU card",
+      "fill": "#141b24",
+      "radius": 14,
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 36,
+      "y": 30,
+      "w": 28,
+      "h": 4,
+      "group": "CPU card",
+      "fill": "#4da3ff",
+      "radius": 2,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 42,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "CPU",
+      "font": "Bahnschrift",
+      "size": 13,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 62,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "$cpu.name",
+      "font": "Segoe UI",
+      "size": 18,
+      "weight": 600,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 210,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "LOAD",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 266,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "CLOCK",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 216,
+      "y": 266,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "POWER",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "rect",
+      "x": 408,
+      "y": 16,
+      "w": 376,
+      "h": 300,
+      "group": "GPU card",
+      "fill": "#141b24",
+      "radius": 14,
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 428,
+      "y": 30,
+      "w": 28,
+      "h": 4,
+      "group": "GPU card",
+      "fill": "#58d68d",
+      "radius": 2,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 428,
+      "y": 42,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "GPU",
+      "font": "Bahnschrift",
+      "size": 13,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 428,
+      "y": 62,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "$gpu.name",
+      "font": "Segoe UI",
+      "size": 18,
+      "weight": 600,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "text",
+      "x": 428,
+      "y": 210,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "LOAD",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 428,
+      "y": 266,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "CLOCK",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 608,
+      "y": 266,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "POWER",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 332,
+      "w": 768,
+      "h": 132,
+      "group": "Footer",
+      "fill": "#141b24",
+      "radius": 14,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 352,
+      "w": 0,
+      "h": 0,
+      "group": "Footer",
+      "text": "RAM",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 296,
+      "y": 352,
+      "w": 0,
+      "h": 0,
+      "group": "Footer",
+      "text": "VRAM",
+      "font": "Bahnschrift",
+      "size": 12,
+      "weight": 600,
+      "align": "left",
+      "color": "#6b7a8c"
+    }
+  ],
+  "widgets": [
+    {
+      "type": "text",
+      "x": 36,
+      "y": 104,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "{cpu.temp:0}°",
+      "font": "Bahnschrift",
+      "size": 72,
+      "weight": 600,
+      "align": "left",
+      "color": "#ffffff",
+      "value": "cpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "x": 216,
+      "y": 104,
+      "w": 156,
+      "h": 72,
+      "group": "CPU card",
+      "value": "cpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#4da3ff",
+      "duration": 60,
+      "width": 2,
+      "fill": "#4da3ff33",
+      "gridLines": 0,
+      "autoScale": false
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 206,
+      "w": 336,
+      "h": 0,
+      "group": "CPU card",
+      "text": "{cpu.load:0}%",
+      "font": "Bahnschrift",
+      "size": 18,
+      "weight": 600,
+      "align": "right",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 232,
+      "w": 336,
+      "h": 10,
+      "group": "CPU card",
+      "value": "cpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#4da3ff",
+      "track": "#232d3a",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 286,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "{cpu.clock:0.00} GHz",
+      "font": "Bahnschrift",
+      "size": 22,
+      "weight": 400,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "text",
+      "x": 216,
+      "y": 286,
+      "w": 0,
+      "h": 0,
+      "group": "CPU card",
+      "text": "{cpu.power:0} W",
+      "font": "Bahnschrift",
+      "size": 22,
+      "weight": 400,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "text",
+      "x": 428,
+      "y": 104,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "{gpu.temp:0}°",
+      "font": "Bahnschrift",
+      "size": 72,
+      "weight": 600,
+      "align": "left",
+      "color": "#ffffff",
+      "value": "gpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "x": 608,
+      "y": 104,
+      "w": 156,
+      "h": 72,
+      "group": "GPU card",
+      "value": "gpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#58d68d",
+      "duration": 60,
+      "width": 2,
+      "fill": "#58d68d33",
+      "gridLines": 0,
+      "autoScale": false
+    },
+    {
+      "type": "text",
+      "x": 428,
+      "y": 206,
+      "w": 336,
+      "h": 0,
+      "group": "GPU card",
+      "text": "{gpu.load:0}%",
+      "font": "Bahnschrift",
+      "size": 18,
+      "weight": 600,
+      "align": "right",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "bar",
+      "x": 428,
+      "y": 232,
+      "w": 336,
+      "h": 10,
+      "group": "GPU card",
+      "value": "gpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#58d68d",
+      "track": "#232d3a",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 428,
+      "y": 286,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "{gpu.clock:0.00} GHz",
+      "font": "Bahnschrift",
+      "size": 22,
+      "weight": 400,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "text",
+      "x": 608,
+      "y": 286,
+      "w": 0,
+      "h": 0,
+      "group": "GPU card",
+      "text": "{gpu.power:0} W",
+      "font": "Bahnschrift",
+      "size": 22,
+      "weight": 400,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 376,
+      "w": 0,
+      "h": 0,
+      "group": "Footer",
+      "text": "{ram.used:0.0} GB",
+      "font": "Bahnschrift",
+      "size": 22,
+      "weight": 400,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 416,
+      "w": 230,
+      "h": 10,
+      "group": "Footer",
+      "value": "ram.load",
+      "min": 0,
+      "max": 100,
+      "color": "#4da3ff",
+      "track": "#232d3a",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 296,
+      "y": 376,
+      "w": 0,
+      "h": 0,
+      "group": "Footer",
+      "text": "{vram.used:0.0} / {vram.total:0} GB",
+      "font": "Bahnschrift",
+      "size": 22,
+      "weight": 400,
+      "align": "left",
+      "color": "#e8eef5"
+    },
+    {
+      "type": "bar",
+      "x": 296,
+      "y": 416,
+      "w": 230,
+      "h": 10,
+      "group": "Footer",
+      "value": "vram.load",
+      "min": 0,
+      "max": 100,
+      "color": "#58d68d",
+      "track": "#232d3a",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 560,
+      "y": 350,
+      "w": 204,
+      "h": 0,
+      "group": "Footer",
+      "text": "{time:HH:mm}",
+      "font": "Bahnschrift",
+      "size": 48,
+      "weight": 600,
+      "align": "right",
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "x": 560,
+      "y": 406,
+      "w": 204,
+      "h": 0,
+      "group": "Footer",
+      "text": "{date:ddd d MMM}",
+      "font": "Bahnschrift",
+      "size": 16,
+      "weight": 400,
+      "align": "right",
+      "color": "#6b7a8c"
+    },
+    {
+      "type": "text",
+      "x": 560,
+      "y": 434,
+      "w": 204,
+      "h": 0,
+      "group": "Footer",
+      "text": "{system.power:0} W  ·  {fps:0} FPS",
+      "font": "Bahnschrift",
+      "size": 16,
+      "weight": 400,
+      "align": "right",
+      "color": "#e8eef5"
+    }
+  ]
+}

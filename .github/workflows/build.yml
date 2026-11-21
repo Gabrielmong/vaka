@@ -1,0 +1,77 @@
+# Builds and tests on every push/PR and uploads SensorPanelSetup.exe as a run artifact.
+# Pushing a tag like v1.2.3 also publishes a GitHub Release with the setup attached:
+#   git tag v1.2.3; git push origin v1.2.3
+name: build
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: src/editor-ui/package-lock.json
+
+      - name: Test
+        run: dotnet test tests/SensorPanel.Tests -c Release
+
+      - name: Version
+        id: version
+        shell: pwsh
+        run: |
+          if ('${{ github.ref_type }}' -eq 'tag' -and '${{ github.ref_name }}' -match '^v(\d+\.\d+\.\d+)$') {
+            $v = $Matches[1]
+          } else {
+            $v = '0.0.${{ github.run_number }}'
+          }
+          "value=$v" >> $env:GITHUB_OUTPUT
+          Write-Host "Version $v"
+
+      - name: Build setup
+        shell: pwsh
+        run: ./installer/build.ps1 -Version ${{ steps.version.outputs.value }} -SkipTests
+
+      # Code signing goes here once there is a certificate (removes the SmartScreen warning), e.g.
+      # Azure Trusted Signing (azure/trusted-signing-action) on out/SensorPanelSetup.exe. The bundle's
+      # engine must be signed too: detach it with `wix burn detach`, sign, `wix burn reattach`, then sign the exe.
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SensorPanelSetup-${{ steps.version.outputs.value }}
+          path: out/SensorPanelSetup.exe
+          if-no-files-found: error
+
+  release:
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" dist/SensorPanelSetup.exe --repo "${{ github.repository }}" --title "Sensor Panel ${{ github.ref_name }}" --generate-notes

@@ -1,0 +1,650 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 800,
+    "height": 480,
+    "background": "#0f0b1a"
+  },
+  "scale": "fit",
+  "aliases": {},
+  "static": [
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 16,
+      "w": 454,
+      "h": 448,
+      "group": "Drives",
+      "fill": "#1a1430",
+      "radius": 14,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 34,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "DRIVES",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 700,
+      "align": "left",
+      "color": "#a78bfa"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 70,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive1",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "left",
+      "color": "#ede9fe"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 166,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive2",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "left",
+      "color": "#ede9fe"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 262,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive3",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "left",
+      "color": "#ede9fe"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 358,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "$drive4",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "left",
+      "color": "#ede9fe"
+    },
+    {
+      "type": "rect",
+      "x": 486,
+      "y": 16,
+      "w": 298,
+      "h": 212,
+      "group": "System disk",
+      "fill": "#1a1430",
+      "radius": 14,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 502,
+      "y": 34,
+      "w": 0,
+      "h": 0,
+      "group": "System disk",
+      "text": "SYSTEM DISK",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 700,
+      "align": "left",
+      "color": "#a78bfa"
+    },
+    {
+      "type": "rect",
+      "x": 486,
+      "y": 236,
+      "w": 298,
+      "h": 228,
+      "group": "Network",
+      "fill": "#1a1430",
+      "radius": 14,
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 502,
+      "y": 254,
+      "w": 0,
+      "h": 0,
+      "group": "Network",
+      "text": "NETWORK",
+      "font": "Segoe UI",
+      "size": 12,
+      "weight": 700,
+      "align": "left",
+      "color": "#a78bfa"
+    }
+  ],
+  "widgets": [
+    {
+      "type": "text",
+      "x": 36,
+      "y": 30,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{time:HH:mm}",
+      "font": "Segoe UI",
+      "size": 14,
+      "weight": 400,
+      "align": "right",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 70,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$1.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "right",
+      "color": "#ede9fe",
+      "value": "drive.$1.usedPct",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 106,
+      "w": 414,
+      "h": 10,
+      "group": "Drives",
+      "value": "drive.$1.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#2c2448",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#f472b6"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 126,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$1.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 126,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$1.totalGB:0} GB",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 166,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$2.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "right",
+      "color": "#ede9fe",
+      "value": "drive.$2.usedPct",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 202,
+      "w": 414,
+      "h": 10,
+      "group": "Drives",
+      "value": "drive.$2.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#2c2448",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#f472b6"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 222,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$2.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 222,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$2.totalGB:0} GB",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 262,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$3.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "right",
+      "color": "#ede9fe",
+      "value": "drive.$3.usedPct",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 298,
+      "w": 414,
+      "h": 10,
+      "group": "Drives",
+      "value": "drive.$3.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#2c2448",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#f472b6"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 318,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$3.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 318,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$3.totalGB:0} GB",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 358,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$4.usedPct:0}%",
+      "font": "Segoe UI",
+      "size": 22,
+      "weight": 600,
+      "align": "right",
+      "color": "#ede9fe",
+      "value": "drive.$4.usedPct",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 394,
+      "w": 414,
+      "h": 10,
+      "group": "Drives",
+      "value": "drive.$4.usedPct",
+      "min": 0,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#2c2448",
+      "radius": 5,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#f472b6"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 414,
+      "w": 0,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$4.freeGB:0} GB free",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 414,
+      "w": 414,
+      "h": 0,
+      "group": "Drives",
+      "text": "{drive.$4.totalGB:0} GB",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 400,
+      "align": "right",
+      "color": "#8f86a8"
+    },
+    {
+      "type": "text",
+      "x": 502,
+      "y": 28,
+      "w": 266,
+      "h": 0,
+      "group": "System disk",
+      "text": "{disk.temp:0} °C",
+      "font": "Segoe UI",
+      "size": 18,
+      "weight": 600,
+      "align": "right",
+      "color": "#ede9fe",
+      "value": "disk.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "x": 502,
+      "y": 66,
+      "w": 266,
+      "h": 110,
+      "group": "System disk",
+      "value": "disk.read",
+      "min": 0,
+      "max": 50,
+      "color": "#a78bfa",
+      "duration": 60,
+      "width": 2,
+      "fill": "#a78bfa26",
+      "gridLines": 0,
+      "autoScale": true
+    },
+    {
+      "type": "graph",
+      "x": 502,
+      "y": 66,
+      "w": 266,
+      "h": 110,
+      "group": "System disk",
+      "value": "disk.write",
+      "min": 0,
+      "max": 50,
+      "color": "#f472b6",
+      "duration": 60,
+      "width": 2,
+      "gridLines": 0,
+      "autoScale": true
+    },
+    {
+      "type": "text",
+      "x": 502,
+      "y": 196,
+      "w": 0,
+      "h": 0,
+      "group": "System disk",
+      "text": "read {disk.read:0.0}",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 600,
+      "align": "left",
+      "color": "#a78bfa"
+    },
+    {
+      "type": "text",
+      "x": 502,
+      "y": 196,
+      "w": 266,
+      "h": 0,
+      "group": "System disk",
+      "text": "write {disk.write:0.0} MB/s",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 600,
+      "align": "right",
+      "color": "#f472b6"
+    },
+    {
+      "type": "graph",
+      "x": 502,
+      "y": 286,
+      "w": 266,
+      "h": 126,
+      "group": "Network",
+      "value": "net.down",
+      "min": 0,
+      "max": 10,
+      "color": "#a78bfa",
+      "duration": 60,
+      "width": 2,
+      "fill": "#a78bfa26",
+      "gridLines": 0,
+      "autoScale": true
+    },
+    {
+      "type": "graph",
+      "x": 502,
+      "y": 286,
+      "w": 266,
+      "h": 126,
+      "group": "Network",
+      "value": "net.up",
+      "min": 0,
+      "max": 10,
+      "color": "#f472b6",
+      "duration": 60,
+      "width": 2,
+      "gridLines": 0,
+      "autoScale": true
+    },
+    {
+      "type": "text",
+      "x": 502,
+      "y": 432,
+      "w": 0,
+      "h": 0,
+      "group": "Network",
+      "text": "↓ {net.down:0.00}",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 600,
+      "align": "left",
+      "color": "#a78bfa"
+    },
+    {
+      "type": "text",
+      "x": 502,
+      "y": 432,
+      "w": 266,
+      "h": 0,
+      "group": "Network",
+      "text": "↑ {net.up:0.00} MB/s",
+      "font": "Segoe UI",
+      "size": 13,
+      "weight": 600,
+      "align": "right",
+      "color": "#f472b6"
+    }
+  ]
+}

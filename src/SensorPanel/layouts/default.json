@@ -1,0 +1,115 @@
+{
+  // Default layout — recreates the original AIDA64 panel (800x480).
+  // Coordinates are canvas units; text Y is the top of capitals/digits.
+  "version": 1,
+  "canvas": { "width": 800, "height": 480, "background": "#000000" },
+  "scale": "fit",
+
+  "aliases": {
+    "cpu.temp":  { "sensor": "/amdcpu/0/temperature/2" },
+    "cpu.load":  { "sensor": "/amdcpu/0/load/0" },
+    "cpu.clock": { "sensor": "/amdcpu/0/clock/1", "scale": 0.001 },
+    "cpu.power": { "sensor": "/amdcpu/0/power/0" },
+    "cpu.fan":   { "sensor": "/lpc/it8665e/0/fan/0" },
+    "aio.pump":  { "sensor": "/lpc/it8665e/0/fan/5" },
+
+    "gpu.temp":  { "sensor": "/gpu-nvidia/0/temperature/0" },
+    "gpu.load":  { "sensor": "/gpu-nvidia/0/load/0" },
+    "gpu.clock": { "sensor": "/gpu-nvidia/0/clock/0" },
+    "gpu.fan":   { "sensor": "/gpu-nvidia/0/fan/1" },
+    "gpu.power": { "sensor": "/gpu-nvidia/0/power/0" },
+
+    "ram.load":  { "sensor": "/ram/load/0" },
+    "ram.used":  { "sensor": "/ram/data/0" },
+    "ram.free":  { "sensor": "/ram/data/1" },
+
+    "vram.load": { "sensor": "/gpu-nvidia/0/load/3", "name": "GPU Memory" },
+    "vram.used": { "sensor": "/gpu-nvidia/0/smalldata/1", "scale": 0.0009765625 },
+    "vram.free": { "sensor": "/gpu-nvidia/0/smalldata/0", "scale": 0.0009765625 }
+  },
+
+  "sensorNames": {
+    "/lpc/it8665e/0/fan/0": "Radiator fans",
+    "/lpc/it8665e/0/fan/5": "AIO pump"
+  },
+
+  "static": [
+    { "type": "rect", "id": "cpu-card",  "x": 12,  "y": 97,  "w": 381, "h": 226, "fill": "#1b1b1b" },
+    { "type": "rect", "id": "gpu-card",  "x": 407, "y": 97,  "w": 381, "h": 226, "fill": "#1b1b1b" },
+    { "type": "rect", "id": "ram-card",  "x": 12,  "y": 337, "w": 249, "h": 138, "fill": "#1b1b1b" },
+    { "type": "rect", "id": "ssd-card",  "x": 275, "y": 337, "w": 249, "h": 138, "fill": "#1b1b1b" },
+    { "type": "rect", "id": "vram-card", "x": 538, "y": 337, "w": 250, "h": 138, "fill": "#1b1b1b" },
+
+    { "type": "text", "x": 32,  "y": 117, "size": 17, "text": "CPU  AMD Ryzen 7 3800X" },
+    { "type": "text", "x": 427, "y": 117, "size": 17, "text": "GPU  NVIDIA GeForce RTX 3070" },
+    { "type": "text", "x": 32,  "y": 357, "size": 17, "text": "RAM  DDR4-3600" },
+    { "type": "text", "x": 293, "y": 357, "size": 17, "text": "SSD  STORAGE" },
+    { "type": "text", "x": 556, "y": 357, "size": 17, "text": "GPU  VRAM" },
+
+    { "type": "text", "x": 32,  "y": 420, "size": 14, "text": "U:" },
+    { "type": "text", "x": 32,  "y": 441, "size": 14, "text": "F:" },
+    { "type": "text", "x": 556, "y": 420, "size": 14, "text": "U:" },
+    { "type": "text", "x": 556, "y": 441, "size": 14, "text": "F:" },
+    { "type": "text", "x": 293, "y": 402, "size": 14, "text": "C:\\" },
+    { "type": "text", "x": 293, "y": 435, "size": 14, "text": "D:\\" }
+  ],
+
+  "widgets": [
+    { "type": "text", "id": "clock", "x": 14,  "y": 36, "size": 44, "text": "{time:HH:mm}" },
+    { "type": "text", "id": "date",  "x": 488, "y": 36, "w": 300, "size": 44, "align": "right", "text": "{date:MM/dd/yy}" },
+    { "type": "text", "id": "power", "x": 250, "y": 44, "w": 300, "size": 22, "align": "center",
+      "text": "{cpu.power:0} W  ·  {gpu.power:0} W" },
+
+    // ── CPU ──────────────────────────────────────────────
+    { "type": "ring", "id": "cpu-ring", "x": 32, "y": 165, "w": 126, "h": 126, "thickness": 12,
+      "value": "cpu.temp", "min": 0, "max": 100, "startAngle": 140, "startTick": true,
+      "thresholds": [ { "gte": 80, "color": "#ffb040" }, { "gte": 90, "color": "#ff4a4a" } ] },
+    { "type": "text", "x": 20, "y": 213, "w": 92, "size": 44, "weight": 300, "align": "right",
+      "text": "{cpu.temp:0}", "value": "cpu.temp",
+      "thresholds": [ { "gte": 80, "color": "#ffb040" }, { "gte": 90, "color": "#ff4a4a" } ] },
+    { "type": "text", "x": 114, "y": 220, "size": 22, "weight": 300, "text": "°C" },
+
+    { "type": "bar",  "x": 208, "y": 165, "w": 167, "h": 6, "value": "cpu.load", "max": 100 },
+    { "type": "text", "x": 227, "y": 178, "w": 150, "size": 18, "align": "right", "text": "{cpu.load:0}%" },
+    { "type": "bar",  "x": 208, "y": 212, "w": 167, "h": 6, "value": "cpu.clock", "max": 4.6 },
+    { "type": "text", "x": 227, "y": 226, "w": 150, "size": 18, "align": "right", "text": "{cpu.clock:0.00} GHz" },
+    { "type": "bar",  "x": 208, "y": 263, "w": 167, "h": 6, "value": "cpu.fan", "max": 2000 },
+    { "type": "text", "x": 227, "y": 277, "w": 150, "size": 18, "align": "right", "text": "{cpu.fan:0} RPM" },
+
+    // ── GPU ──────────────────────────────────────────────
+    { "type": "ring", "id": "gpu-ring", "x": 427, "y": 165, "w": 126, "h": 126, "thickness": 12,
+      "value": "gpu.temp", "min": 0, "max": 100, "startAngle": 140, "startTick": true,
+      "thresholds": [ { "gte": 75, "color": "#ffb040" }, { "gte": 85, "color": "#ff4a4a" } ] },
+    { "type": "text", "x": 415, "y": 213, "w": 92, "size": 44, "weight": 300, "align": "right",
+      "text": "{gpu.temp:0}", "value": "gpu.temp",
+      "thresholds": [ { "gte": 75, "color": "#ffb040" }, { "gte": 85, "color": "#ff4a4a" } ] },
+    { "type": "text", "x": 509, "y": 220, "size": 22, "weight": 300, "text": "°C" },
+
+    { "type": "bar",  "x": 603, "y": 165, "w": 167, "h": 6, "value": "gpu.load", "max": 100 },
+    { "type": "text", "x": 622, "y": 178, "w": 150, "size": 18, "align": "right", "text": "{gpu.load:0}%" },
+    { "type": "bar",  "x": 603, "y": 212, "w": 167, "h": 6, "value": "gpu.clock", "max": 2100 },
+    { "type": "text", "x": 622, "y": 226, "w": 150, "size": 18, "align": "right", "text": "{gpu.clock:0} MHz" },
+    { "type": "bar",  "x": 603, "y": 263, "w": 167, "h": 6, "value": "gpu.fan", "max": 3000 },
+    { "type": "text", "x": 622, "y": 277, "w": 150, "size": 18, "align": "right", "text": "{gpu.fan:0} RPM" },
+
+    // ── RAM ──────────────────────────────────────────────
+    { "type": "bar",  "x": 32, "y": 393, "w": 210, "h": 12, "value": "ram.load", "max": 100 },
+    { "type": "text", "x": 68, "y": 420, "size": 14, "weight": 700, "text": "{ram.used:0.0} GB" },
+    { "type": "text", "x": 68, "y": 441, "size": 14, "weight": 700, "text": "{ram.free:0.0} GB" },
+    { "type": "text", "x": 98, "y": 418, "w": 150, "size": 44, "weight": 300, "align": "right", "text": "{ram.load:0}%" },
+
+    // ── Storage ──────────────────────────────────────────
+    { "type": "bar",  "x": 330, "y": 401, "w": 115, "h": 11, "value": "drive.C.usedPct", "max": 100,
+      "thresholds": [ { "gte": 90, "color": "#ffb040" } ] },
+    { "type": "text", "x": 362, "y": 398, "w": 150, "size": 28, "weight": 300, "align": "right", "text": "{drive.C.usedPct:0}%" },
+    { "type": "bar",  "x": 330, "y": 434, "w": 115, "h": 11, "value": "drive.D.usedPct", "max": 100,
+      "thresholds": [ { "gte": 90, "color": "#ffb040" } ] },
+    { "type": "text", "x": 362, "y": 431, "w": 150, "size": 28, "weight": 300, "align": "right", "text": "{drive.D.usedPct:0}%" },
+
+    // ── VRAM ─────────────────────────────────────────────
+    { "type": "bar",  "x": 556, "y": 393, "w": 210, "h": 12, "value": "vram.load", "max": 100 },
+    { "type": "text", "x": 592, "y": 420, "size": 14, "weight": 700, "text": "{vram.used:0.0} GB" },
+    { "type": "text", "x": 592, "y": 441, "size": 14, "weight": 700, "text": "{vram.free:0.0} GB" },
+    { "type": "text", "x": 622, "y": 418, "w": 150, "size": 44, "weight": 300, "align": "right", "text": "{vram.load:0}%" }
+  ]
+}

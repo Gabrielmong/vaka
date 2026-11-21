@@ -1,0 +1,386 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 800,
+    "height": 480,
+    "background": "#040806"
+  },
+  "scale": "fit",
+  "aliases": {},
+  "static": [
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 16,
+      "w": 376,
+      "h": 192,
+      "group": "Cpu Load",
+      "fill": "#07110b",
+      "radius": 6,
+      "stroke": "#123a24",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 30,
+      "w": 0,
+      "h": 0,
+      "group": "Cpu Load",
+      "text": "CPU LOAD",
+      "font": "Consolas",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 48,
+      "w": 0,
+      "h": 0,
+      "group": "Cpu Load",
+      "text": "$cpu.name",
+      "font": "Consolas",
+      "size": 11,
+      "weight": 400,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "rect",
+      "x": 408,
+      "y": 16,
+      "w": 376,
+      "h": 192,
+      "group": "Gpu Load",
+      "fill": "#07110b",
+      "radius": 6,
+      "stroke": "#123a24",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 422,
+      "y": 30,
+      "w": 0,
+      "h": 0,
+      "group": "Gpu Load",
+      "text": "GPU LOAD",
+      "font": "Consolas",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "text",
+      "x": 422,
+      "y": 48,
+      "w": 0,
+      "h": 0,
+      "group": "Gpu Load",
+      "text": "$gpu.name",
+      "font": "Consolas",
+      "size": 11,
+      "weight": 400,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 220,
+      "w": 376,
+      "h": 192,
+      "group": "Cpu Temp",
+      "fill": "#07110b",
+      "radius": 6,
+      "stroke": "#123a24",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 234,
+      "w": 0,
+      "h": 0,
+      "group": "Cpu Temp",
+      "text": "CPU TEMP",
+      "font": "Consolas",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 252,
+      "w": 0,
+      "h": 0,
+      "group": "Cpu Temp",
+      "text": "$cpu.name",
+      "font": "Consolas",
+      "size": 11,
+      "weight": 400,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "rect",
+      "x": 408,
+      "y": 220,
+      "w": 376,
+      "h": 192,
+      "group": "Gpu Temp",
+      "fill": "#07110b",
+      "radius": 6,
+      "stroke": "#123a24",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 422,
+      "y": 234,
+      "w": 0,
+      "h": 0,
+      "group": "Gpu Temp",
+      "text": "GPU TEMP",
+      "font": "Consolas",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "text",
+      "x": 422,
+      "y": 252,
+      "w": 0,
+      "h": 0,
+      "group": "Gpu Temp",
+      "text": "$gpu.name",
+      "font": "Consolas",
+      "size": 11,
+      "weight": 400,
+      "align": "left",
+      "color": "#1f6b43"
+    },
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 424,
+      "w": 768,
+      "h": 40,
+      "group": "Status line",
+      "fill": "#07110b",
+      "radius": 6,
+      "stroke": "#123a24",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 436,
+      "w": 0,
+      "h": 0,
+      "group": "Status line",
+      "text": ">",
+      "font": "Consolas",
+      "size": 16,
+      "weight": 700,
+      "align": "left",
+      "color": "#1f6b43"
+    }
+  ],
+  "widgets": [
+    {
+      "type": "text",
+      "x": 30,
+      "y": 26,
+      "w": 348,
+      "h": 0,
+      "group": "Cpu Load",
+      "text": "{cpu.load:0}%",
+      "font": "Consolas",
+      "size": 24,
+      "weight": 700,
+      "align": "right",
+      "color": "#39ff88",
+      "value": "cpu.load",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "x": 30,
+      "y": 72,
+      "w": 348,
+      "h": 122,
+      "group": "Cpu Load",
+      "value": "cpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#39ff88",
+      "duration": 60,
+      "width": 2,
+      "fill": "#39ff881f",
+      "gridLines": 3,
+      "gridColor": "#39ff881a",
+      "autoScale": false
+    },
+    {
+      "type": "text",
+      "x": 422,
+      "y": 26,
+      "w": 348,
+      "h": 0,
+      "group": "Gpu Load",
+      "text": "{gpu.load:0}%",
+      "font": "Consolas",
+      "size": 24,
+      "weight": 700,
+      "align": "right",
+      "color": "#39ff88",
+      "value": "gpu.load",
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "x": 422,
+      "y": 72,
+      "w": 348,
+      "h": 122,
+      "group": "Gpu Load",
+      "value": "gpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#39ff88",
+      "duration": 60,
+      "width": 2,
+      "fill": "#39ff881f",
+      "gridLines": 3,
+      "gridColor": "#39ff881a",
+      "autoScale": false
+    },
+    {
+      "type": "text",
+      "x": 30,
+      "y": 230,
+      "w": 348,
+      "h": 0,
+      "group": "Cpu Temp",
+      "text": "{cpu.temp:0} °C",
+      "font": "Consolas",
+      "size": 24,
+      "weight": 700,
+      "align": "right",
+      "color": "#39ff88",
+      "value": "cpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "x": 30,
+      "y": 276,
+      "w": 348,
+      "h": 122,
+      "group": "Cpu Temp",
+      "value": "cpu.temp",
+      "min": 20,
+      "max": 100,
+      "color": "#39ff88",
+      "duration": 60,
+      "width": 2,
+      "fill": "#39ff881f",
+      "gridLines": 3,
+      "gridColor": "#39ff881a",
+      "autoScale": false
+    },
+    {
+      "type": "text",
+      "x": 422,
+      "y": 230,
+      "w": 348,
+      "h": 0,
+      "group": "Gpu Temp",
+      "text": "{gpu.temp:0} °C",
+      "font": "Consolas",
+      "size": 24,
+      "weight": 700,
+      "align": "right",
+      "color": "#39ff88",
+      "value": "gpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "x": 422,
+      "y": 276,
+      "w": 348,
+      "h": 122,
+      "group": "Gpu Temp",
+      "value": "gpu.temp",
+      "min": 20,
+      "max": 100,
+      "color": "#39ff88",
+      "duration": 60,
+      "width": 2,
+      "fill": "#39ff881f",
+      "gridLines": 3,
+      "gridColor": "#39ff881a",
+      "autoScale": false
+    },
+    {
+      "type": "text",
+      "x": 48,
+      "y": 436,
+      "w": 0,
+      "h": 0,
+      "group": "Status line",
+      "text": "{time:HH:mm:ss}   RAM {ram.used:0.0} GB   VRAM {vram.used:0.0} GB   PWR {system.power:0} W   FPS {fps:0}",
+      "font": "Consolas",
+      "size": 16,
+      "weight": 400,
+      "align": "left",
+      "color": "#39ff88"
+    }
+  ]
+}

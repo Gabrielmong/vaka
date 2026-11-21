@@ -1,0 +1,129 @@
+[
+  {
+    "id": "duo",
+    "name": "Duo",
+    "description": "Two clean cards for CPU and GPU with RAM, power and the time underneath.",
+    "shows": [
+      "CPU",
+      "GPU",
+      "RAM",
+      "VRAM",
+      "Power",
+      "FPS",
+      "Clock"
+    ]
+  },
+  {
+    "id": "gauges",
+    "name": "Gauges",
+    "description": "Four neon rings for CPU and GPU temperature and load, with a side column for the time and memory.",
+    "shows": [
+      "CPU",
+      "GPU",
+      "RAM",
+      "VRAM",
+      "FPS",
+      "Clock"
+    ]
+  },
+  {
+    "id": "trends",
+    "name": "Trends",
+    "description": "Terminal-green history graphs of CPU and GPU load and temperature over the last minute.",
+    "shows": [
+      "CPU",
+      "GPU",
+      "RAM",
+      "VRAM",
+      "Power",
+      "FPS",
+      "Clock"
+    ]
+  },
+  {
+    "id": "hud",
+    "name": "Gaming HUD",
+    "description": "A huge FPS counter with 1% lows and frame time, plus the GPU and CPU numbers that matter in game.",
+    "shows": [
+      "FPS",
+      "Frame time",
+      "GPU",
+      "CPU",
+      "Clock"
+    ]
+  },
+  {
+    "id": "cooling",
+    "name": "Cooling",
+    "description": "Every temperature and every fan: CPU, GPU, hotspot, board and disk, plus up to six fans and the pump.",
+    "shows": [
+      "Temperatures",
+      "Fans",
+      "Pump",
+      "Clock"
+    ]
+  },
+  {
+    "id": "clock",
+    "name": "Clock",
+    "description": "A calm cream clock face with the date, and a thin strip of CPU and GPU numbers.",
+    "shows": [
+      "Clock",
+      "Date",
+      "CPU",
+      "GPU"
+    ]
+  },
+  {
+    "id": "power",
+    "name": "Power",
+    "description": "Estimated whole-system power in big amber digits, with two-minute CPU and GPU power graphs.",
+    "shows": [
+      "Power",
+      "CPU",
+      "GPU",
+      "FPS",
+      "Clock"
+    ]
+  },
+  {
+    "id": "overview",
+    "name": "Overview",
+    "description": "Everything at once: CPU, GPU, memory, network, four drives, power, FPS and the time.",
+    "shows": [
+      "CPU",
+      "GPU",
+      "RAM",
+      "VRAM",
+      "Drives",
+      "Disk",
+      "Network",
+      "Power",
+      "FPS",
+      "Clock"
+    ]
+  },
+  {
+    "id": "storage-net",
+    "name": "Storage and Net",
+    "description": "Up to four drives with free space, plus disk and network activity graphs.",
+    "shows": [
+      "Drives",
+      "Disk",
+      "Network",
+      "Clock"
+    ]
+  },
+  {
+    "id": "synthwave",
+    "name": "Synthwave",
+    "description": "A neon sunset with glowing rings for CPU and GPU, eight core bars on the grid, and FPS.",
+    "shows": [
+      "CPU",
+      "GPU",
+      "CPU cores",
+      "FPS",
+      "Clock"
+    ]
+  }
+]

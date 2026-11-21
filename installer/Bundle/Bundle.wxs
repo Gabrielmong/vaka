@@ -1,0 +1,37 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  <!-- Never change the UpgradeCode: it is how a newer setup replaces an older one in Apps. -->
+  <Bundle Name="Sensor Panel" Manufacturer="Sensor Panel" Version="$(ProductVersion)"
+          UpgradeCode="a7acb0c4-7d34-4652-8f40-bf25a163525e">
+    <BootstrapperApplication>
+      <bal:WixStandardBootstrapperApplication Theme="hyperlinkSidebarLicense" LicenseUrl=""
+          LaunchTarget="[ProgramFiles64Folder]SensorPanel\SensorPanel.exe"
+          LaunchTargetElevatedId="SensorPanelExe" SuppressOptionsUI="yes" />
+    </BootstrapperApplication>
+
+    <!-- The panel reads sensors as admin, so "Launch" starts it elevated (path written by the MSI). -->
+    <ApprovedExeForElevation Id="SensorPanelExe" Key="SOFTWARE\SensorPanel" Value="LaunchPath" Bitness="always64" />
+
+    <util:RegistrySearch Id="PawnIOSearch" Root="HKLM" Key="SYSTEM\CurrentControlSet\Services\PawnIO"
+                         Result="exists" Variable="PawnIOInstalled" Bitness="always64" />
+
+    <Chain>
+      <!--
+        PawnIO driver (CPU/motherboard sensors). Not embedded: downloaded from its official release only when
+        missing, and verified by hash. Never removed by our uninstall (other hardware tools share it).
+        Not vital: without it (e.g. offline) the panel still installs and shows its "PawnIO not installed" note.
+      -->
+      <ExePackage Id="PawnIO" DisplayName="PawnIO driver" Permanent="yes" Vital="no" PerMachine="yes" Cache="remove"
+                  InstallArguments="-install -silent" DetectCondition="PawnIOInstalled">
+        <ExePackagePayload Name="PawnIO_setup.exe"
+            DownloadUrl="https://github.com/namazso/PawnIO.Setup/releases/download/2.2.0/PawnIO_setup.exe"
+            Size="3410960"
+            Hash="9415a97341dfc69d34c4f7f5081e70782ba712d8ea7d0c2ea2b44a0e90b1567cd53e400b3d29562b723d3763e0ff00116e97e2072d3fefc3a1821413aa937afd" />
+        <ExitCode Value="3010" Behavior="scheduleReboot" />
+      </ExePackage>
+
+      <MsiPackage Id="SensorPanel" SourceFile="$(MsiPath)" />
+    </Chain>
+  </Bundle>
+</Wix>

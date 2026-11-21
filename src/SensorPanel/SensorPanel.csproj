@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>SensorPanel</AssemblyName>
+    <RootNamespace>SensorPanel</RootNamespace>
+    <!-- Keep memory low: workstation, non-concurrent GC -->
+    <ServerGarbageCollector>false</ServerGarbageCollector>
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <TieredPGO>true</TieredPGO>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.6" />
+    <PackageReference Include="SkiaSharp" Version="4.157.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="templates\*.json" LogicalName="templates/%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <!--
+    Web editor (React + MUI, TypeScript) lives in ../editor-ui. It is built with npm/Vite
+    (only when its sources change) and the output is embedded as wwwroot/*.
+    Set SkipEditorUi=true to build without Node (uses whatever is already in dist/).
+  -->
+  <PropertyGroup>
+    <EditorUiDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)\..\editor-ui'))\</EditorUiDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <EditorUiSource Include="$(EditorUiDir)src\**\*;$(EditorUiDir)index.html;$(EditorUiDir)package.json;$(EditorUiDir)package-lock.json;$(EditorUiDir)vite.config.ts;$(EditorUiDir)tsconfig.json" />
+  </ItemGroup>
+
+  <Target Name="EditorUiInstall" Condition="'$(SkipEditorUi)' != 'true' And !Exists('$(EditorUiDir)node_modules')">
+    <Exec Command="npm ci --no-audit --no-fund" WorkingDirectory="$(EditorUiDir)" />
+  </Target>
+
+  <Target Name="EditorUiBuild" DependsOnTargets="EditorUiInstall" Condition="'$(SkipEditorUi)' != 'true'"
+          Inputs="@(EditorUiSource)" Outputs="$(EditorUiDir)dist\index.html">
+    <Exec Command="npm run build" WorkingDirectory="$(EditorUiDir)" />
+  </Target>
+
+  <Target Name="EmbedEditorUi" BeforeTargets="PrepareForBuild" DependsOnTargets="EditorUiBuild">
+    <Error Condition="!Exists('$(EditorUiDir)dist\index.html')" Text="Editor UI not built: run 'npm ci; npm run build' in $(EditorUiDir)" />
+    <ItemGroup>
+      <_EditorUiFile Include="$(EditorUiDir)dist\**\*" />
+      <EmbeddedResource Include="@(_EditorUiFile)"
+                        LogicalName="wwwroot/%(_EditorUiFile.RecursiveDir)%(_EditorUiFile.Filename)%(_EditorUiFile.Extension)" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="SensorPanel.Tests" />
+  </ItemGroup>
+
+</Project>
