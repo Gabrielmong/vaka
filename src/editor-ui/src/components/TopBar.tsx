@@ -83,7 +83,7 @@ export function TopBar() {
       <Toolbar variant="dense" sx={{ gap: 1.5 }}>
         <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mr: 1 }}>
           <Box sx={{ width: 18, height: 18, borderRadius: '50%', border: '3px solid', borderColor: 'primary.main', borderBottomColor: 'transparent', transform: 'rotate(40deg)' }} />
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, color: 'text.secondary' }}>Sensor Panel</Typography>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, color: 'text.secondary' }}>Vaka</Typography>
           <Typography color="text.disabled">/</Typography>
           <LayoutMenu />
         </Stack>

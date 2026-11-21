@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Output is embedded into SensorPanel.exe (see SensorPanel.csproj). The page is served with a
+// Output is embedded into Vaka.exe (see Vaka.csproj). The page is served with a
 // strict CSP, so: no inline scripts, no modulepreload polyfill, assets only from 'self'.
 export default defineConfig({
   plugins: [react()],

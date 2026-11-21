@@ -1,9 +1,9 @@
-"""Generates src/SensorPanel/templates/*.json (+ manifest.json). Run: python scripts/gen_templates.py
+"""Generates src/Vaka/templates/*.json (+ manifest.json). Run: python scripts/gen_templates.py
 
 The JSON files are what ships; edit the templates here and regenerate rather than hand-editing the JSON."""
 import json, os
 
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src', 'SensorPanel', 'templates')
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src', 'Vaka', 'templates')
 _group = [None]
 
 

@@ -1,27 +1,29 @@
-# Sensor Panel
+# Vaka
 
-Lightweight hardware-monitor display for a dedicated small screen — a replacement for the
-AIDA64 sensor panel. See [docs/design.md](docs/design.md).
+Lightweight hardware-monitor display for a dedicated small screen. See [docs/design.md](docs/design.md).
+
+Free and open source ([MIT](LICENSE)); third-party components are listed in
+[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
 ## Install
 
-Download **SensorPanelSetup.exe** from the latest release and run it. One administrator prompt, then it
+Download **VakaSetup.exe** from the latest release and run it. One administrator prompt, then it
 installs everything:
 
 - the **PawnIO driver** (needed for CPU temperature/clocks and motherboard fans) — downloaded from its
   official release only if it isn't installed yet, so the first install needs internet;
-- the panel (no .NET install needed) and **PresentMon** for the FPS readout, in `C:\Program Files\SensorPanel`;
+- the panel (no .NET install needed) and **PresentMon** for the FPS readout, in `C:\Program Files\Vaka`;
 - a logon task so the panel starts for every user, elevated, without a UAC prompt.
 
 Click **Launch** at the end, or log off and on. The setup isn't code-signed yet, so Windows SmartScreen may
-warn: **More info → Run anyway**. Silent install: `SensorPanelSetup.exe /quiet`.
+warn: **More info → Run anyway**. Silent install: `VakaSetup.exe /quiet`.
 
 Running a newer setup upgrades in place (the panel is closed and its layouts kept). Uninstall from
-**Settings → Apps → Sensor Panel**: removes the app and logon task, keeps your layouts and settings
-(`%APPDATA%\SensorPanel`) and the PawnIO driver (other hardware tools use it too).
+**Settings → Apps → Vaka**: removes the app and logon task, keeps your layouts and settings
+(`%APPDATA%\Vaka`) and the PawnIO driver (other hardware tools use it too).
 
-Notes: Windows 10/11 x64. The panel runs as administrator (sensor access). Don't run AIDA64's sensor
-panel at the same time (both read the Super I/O chip).
+Notes: Windows 10/11 x64. The panel runs as administrator (sensor access). Don't run another tool that
+reads the motherboard's Super I/O chip at the same time (the readings can clash).
 
 ## Use
 
@@ -60,11 +62,11 @@ panel at the same time (both read the Super I/O chip).
   the seconds per page (also: tray → **Pages**, which has **Next page**). Saving a page shows it
   on the panel right away.
 - **Images:** add an *Image* element and upload a picture (PNG/JPEG/WebP/GIF/BMP, ≤ 20 MB). Uploads
-  are decoded and re-encoded into `%APPDATA%\SensorPanel\images\` — the editor can't read other files.
+  are decoded and re-encoded into `%APPDATA%\Vaka\images\` — the editor can't read other files.
 - **Export background** (wallpaper icon): downloads the canvas plus all background elements as a PNG.
-- Layouts live in `%APPDATA%\SensorPanel\layouts\`. You can also edit them by hand —
+- Layouts live in `%APPDATA%\Vaka\layouts\`. You can also edit them by hand —
   the panel reloads instantly. Errors appear in a red bar at the bottom of the panel.
-- Log: `%APPDATA%\SensorPanel\panel.log`.
+- Log: `%APPDATA%\Vaka\panel.log`.
 
 ### Layout cheat sheet
 
@@ -97,38 +99,43 @@ divided by ~88% PSU efficiency. Tune both numbers to your hardware.
 
 **FPS** (foreground app): `fps` (average over the last second), `fps.low1` (1% low over 10 s),
 `fps.frametime` (ms). These show `--` when the focused app isn't rendering. They need Intel
-PresentMon's console build: `winget install Intel.PresentMon.Console`. The panel finds it in the
-winget package folder, next to SensorPanel.exe, or on PATH. It runs PresentMon hidden, and only
+PresentMon's console build, which the installer puts next to Vaka.exe. Because the panel runs as
+administrator, it only starts PresentMon from where only administrators can write: next to Vaka.exe
+inside Program Files, or the path in the `PresentMonPath` string value under `HKLM\SOFTWARE\Vaka`
+(for a development build, point that at a PresentMon you trust). It never searches PATH or the
+per-user winget folder. It runs PresentMon hidden, and only
 while a layout on any page uses an fps key; a job object kills it if the panel dies.
 
 ## Develop
 
 ```powershell
 dotnet test
-dotnet run --project src/SensorPanel                       # needs an elevated terminal
-SensorPanel.exe --snapshot out.png [--layout f.json] [--size 1024x600] [--record 60]
+dotnet run --project src/Vaka                       # needs an elevated terminal
+Vaka.exe --snapshot out.png [--layout f.json] [--size 1024x600] [--record 60]
                                        # render one frame to PNG; --record samples N s of graph history first
-SensorPanel.exe --snapshot out.png --template synthwave [--size 1024x600]
+Vaka.exe --snapshot out.png --template synthwave [--size 1024x600]
                                        # a template built for this PC (+ out.detect.txt: what was found)
-SensorPanel.exe --list-sensors sensors.tsv                 # every sensor, tab-separated
-python scripts/gen_templates.py        # templates are authored here -> src/SensorPanel/templates/*.json
-$env:SP_DATA_DIR = "$env:TEMP\sp-fresh"  # use another data folder (e.g. to try the first run)
+Vaka.exe --list-sensors sensors.tsv                 # every sensor, tab-separated
+dotnet Vaka.dll --frames out [--template duo|all] [--seconds 30] [--size 800x480]
+                                       # website images: templates on mock sensors (no admin, no hardware)
+python scripts/gen_templates.py        # templates are authored here -> src/Vaka/templates/*.json
+$env:VAKA_DATA_DIR = "$env:TEMP\sp-fresh"  # use another data folder (e.g. to try the first run)
 
 # The web editor (React + MUI + TypeScript, Vite) lives in src/editor-ui. `dotnet build`
 # runs `npm ci` / `npm run build` automatically (only when its sources change) and embeds
 # dist/ into the exe. Needs Node 20+; build with -p:SkipEditorUi=true to use an existing dist/.
 cd src/editor-ui; npm run typecheck; npm run watch     # rebuild dist/ on every save
-$env:SENSORPANEL_WWWROOT = "$PWD\src\editor-ui\dist"   # app serves dist/ from disk -> just reload the tab
+$env:VAKA_WWWROOT = "$PWD\src\editor-ui\dist"   # app serves dist/ from disk -> just reload the tab
 # Headless screenshot of the editor (optionally preselect an element)
-$env:SP_EDITOR_SCREENSHOT = "$env:TEMP\editor.png"; $env:SP_EDITOR_HASH = "#layout=Showcase.json&sel=widgets:0"
-dotnet test tests/SensorPanel.Tests --filter EditorBrowserSmoke
+$env:VAKA_EDITOR_SCREENSHOT = "$env:TEMP\editor.png"; $env:VAKA_EDITOR_HASH = "#layout=Showcase.json&sel=widgets:0"
+dotnet test tests/Vaka.Tests --filter EditorBrowserSmoke
 ```
 
 ### Installer and releases
 
 ```powershell
-.\installer\build.ps1 [-Version 1.2.3] [-SkipTests]   # -> out\SensorPanelSetup.exe (needs .NET 10 SDK, Node 20+)
-SensorPanelSetup.exe /quiet /log setup.log            # test install; /uninstall /quiet to remove
+.\installer\build.ps1 [-Version 1.2.3] [-SkipTests]   # -> out\VakaSetup.exe (needs .NET 10 SDK, Node 20+)
+VakaSetup.exe /quiet /log setup.log            # test install; /uninstall /quiet to remove
 .\scripts\install.ps1 [-Uninstall]                    # dev shortcut: per-user copy in %LOCALAPPDATA%\Programs
 ```
 
@@ -138,6 +145,24 @@ referenced by URL and hash in `Bundle.wxs`, never bundled. To move to a newer Pa
 the URL, size and hash there (the bundle wants SHA-512) or in `build.ps1` (SHA-256).
 
 GitHub Actions (`.github/workflows/build.yml`) tests and builds every push; the setup is attached to the run.
-Pushing a tag `v1.2.3` also creates a release with `SensorPanelSetup.exe` (version 1.2.3; untagged builds
+Pushing a tag `v1.2.3` also creates a release with `VakaSetup.exe` (version 1.2.3; untagged builds
 are 0.0.*run number*). The dev shortcut and the installer register the same logon task name, so the last
 one used wins.
+
+### Website
+
+`site/` is the landing page (Vite + React + MUI + TypeScript). Its panel images are drawn by the app
+itself: `MockSensors` simulates the owner's PC cycling Idle → Gaming → Rendering over 30 s, and
+`--frames` writes one WebP per second per template plus `manifest.json` into `site/public/panel/`
+(gitignored).
+
+```powershell
+cd site; npm install
+npm run frames        # render the images once (checks the fonts first; -- -Force to re-render)
+npm run dev           # or: npm test; npm run build
+```
+
+The `pages` job in `.github/workflows/build.yml` renders the images on Windows, builds the site and
+deploys it to GitHub Pages on every push to the default branch. One-time setup: repo
+**Settings → Pages → Source: GitHub Actions**. Run Vitest from a `C:\` path: with a lower-case
+`c:\` working directory (VS Code's default) it loads twice and fails.

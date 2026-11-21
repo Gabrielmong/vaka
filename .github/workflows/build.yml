@@ -1,4 +1,4 @@
-# Builds and tests on every push/PR and uploads SensorPanelSetup.exe as a run artifact.
+# Builds and tests on every push/PR and uploads VakaSetup.exe as a run artifact.
 # Pushing a tag like v1.2.3 also publishes a GitHub Release with the setup attached:
 #   git tag v1.2.3; git push origin v1.2.3
 name: build
@@ -31,7 +31,7 @@ jobs:
           cache-dependency-path: src/editor-ui/package-lock.json
 
       - name: Test
-        run: dotnet test tests/SensorPanel.Tests -c Release
+        run: dotnet test tests/Vaka.Tests -c Release
 
       - name: Version
         id: version
@@ -50,13 +50,13 @@ jobs:
         run: ./installer/build.ps1 -Version ${{ steps.version.outputs.value }} -SkipTests
 
       # Code signing goes here once there is a certificate (removes the SmartScreen warning), e.g.
-      # Azure Trusted Signing (azure/trusted-signing-action) on out/SensorPanelSetup.exe. The bundle's
+      # Azure Trusted Signing (azure/trusted-signing-action) on out/VakaSetup.exe. The bundle's
       # engine must be signed too: detach it with `wix burn detach`, sign, `wix burn reattach`, then sign the exe.
 
       - uses: actions/upload-artifact@v4
         with:
-          name: SensorPanelSetup-${{ steps.version.outputs.value }}
-          path: out/SensorPanelSetup.exe
+          name: VakaSetup-${{ steps.version.outputs.value }}
+          path: out/VakaSetup.exe
           if-no-files-found: error
 
   release:
@@ -74,4 +74,56 @@ jobs:
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "${{ github.ref_name }}" dist/SensorPanelSetup.exe --repo "${{ github.repository }}" --title "Sensor Panel ${{ github.ref_name }}" --generate-notes
+        run: gh release create "${{ github.ref_name }}" dist/VakaSetup.exe --repo "${{ github.repository }}" --title "Vaka ${{ github.ref_name }}" --generate-notes
+
+  # The website (site/): panel images rendered by the app on mock sensors, published to GitHub Pages from the
+  # default branch. One-time setup: repo Settings -> Pages -> Source: GitHub Actions.
+  pages:
+    if: github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            site/package-lock.json
+            src/editor-ui/package-lock.json
+
+      # Fails with the font's name if the runner lacks a font the templates use (frames would be wrong).
+      - name: Render panel images
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/render-site-frames.ps1 -Force
+
+      - name: Build site
+        working-directory: site
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy-pages:
+    needs: pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

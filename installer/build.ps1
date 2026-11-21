@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Builds out\SensorPanelSetup.exe: publishes the app, adds PresentMon, builds the MSI and the setup bundle.
+  Builds out\VakaSetup.exe: publishes the app, adds PresentMon, builds the MSI and the setup bundle.
   Used both locally and by GitHub Actions.
 .EXAMPLE
   .\installer\build.ps1                    # version 0.1.0, runs the tests first
@@ -20,7 +20,7 @@ $out = Join-Path $root 'out'
 $publish = Join-Path $out 'publish'
 $cache = Join-Path $out 'cache'
 
-# PresentMon (MIT) — pinned and hash-checked; shipped as presentmon.exe next to SensorPanel.exe.
+# PresentMon (MIT) — pinned and hash-checked; shipped as presentmon.exe next to Vaka.exe.
 $presentMon = @{
     Url    = 'https://github.com/GameTechDev/PresentMon/releases/download/v2.6.0/PresentMon-2.6.0-x64.exe'
     File   = 'PresentMon-2.6.0-x64.exe'
@@ -49,12 +49,12 @@ function Get-Verified([hashtable]$dep) {
 }
 
 if (-not $SkipTests) {
-    Invoke-Checked 'Tests' { dotnet test (Join-Path $root 'tests\SensorPanel.Tests') -c Release }
+    Invoke-Checked 'Tests' { dotnet test (Join-Path $root 'tests\Vaka.Tests') -c Release }
 }
 
 if (Test-Path $publish) { Remove-Item $publish -Recurse -Force }
 Invoke-Checked 'Publish app (win-x64, self-contained)' {
-    dotnet publish (Join-Path $root 'src\SensorPanel') -c Release -r win-x64 --self-contained `
+    dotnet publish (Join-Path $root 'src\Vaka') -c Release -r win-x64 --self-contained `
         -p:Version=$Version -o $publish
 }
 Copy-Item (Get-Verified $presentMon) (Join-Path $publish 'presentmon.exe')
@@ -65,13 +65,13 @@ Invoke-Checked 'Build MSI' {
         -p:AppDir=$publish -p:ProductVersion=$Version -o $msiOut
 }
 $bundleOut = Join-Path $out 'bundle'
-$msi = Join-Path $msiOut 'SensorPanel.msi'
+$msi = Join-Path $msiOut 'Vaka.msi'
 Invoke-Checked 'Build setup bundle' {
     dotnet build (Join-Path $PSScriptRoot 'Bundle\Bundle.wixproj') -c Release `
         -p:MsiPath=$msi -p:ProductVersion=$Version -o $bundleOut
 }
 
-$setup = Join-Path $out 'SensorPanelSetup.exe'
-Copy-Item (Join-Path $bundleOut 'SensorPanelSetup.exe') $setup -Force
+$setup = Join-Path $out 'VakaSetup.exe'
+Copy-Item (Join-Path $bundleOut 'VakaSetup.exe') $setup -Force
 $mb = [math]::Round((Get-Item $setup).Length / 1MB, 1)
 Write-Host "Built $setup ($mb MB, version $Version)" -ForegroundColor Green

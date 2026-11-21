@@ -1,7 +1,7 @@
 <Project Sdk="WixToolset.Sdk/5.0.2">
   <!-- The app's MSI. Built by installer/build.ps1, which passes AppDir (the win-x64 publish output) and ProductVersion. -->
   <PropertyGroup>
-    <OutputName>SensorPanel</OutputName>
+    <OutputName>Vaka</OutputName>
     <Platform>x64</Platform>
     <ProductVersion Condition="'$(ProductVersion)' == ''">0.1.0</ProductVersion>
     <!-- ICE61 warns about AllowSameVersionUpgrades, which is intended (see Package.wxs). -->

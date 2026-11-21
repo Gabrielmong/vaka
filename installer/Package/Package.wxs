@@ -1,27 +1,27 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
      xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
   <!-- Never change the UpgradeCode: it is how a newer setup finds and replaces an older install. -->
-  <Package Name="Sensor Panel" Manufacturer="Sensor Panel" Version="$(ProductVersion)"
+  <Package Name="Vaka" Manufacturer="Vaka" Version="$(ProductVersion)"
            UpgradeCode="6028b049-acef-4802-bff7-30016d7d90da" Scope="perMachine">
     <!-- Same-version upgrades too: a rebuild with an unchanged version must replace, not install side by side. -->
     <MajorUpgrade AllowSameVersionUpgrades="yes"
-                  DowngradeErrorMessage="A newer version of Sensor Panel is already installed." />
+                  DowngradeErrorMessage="A newer version of Vaka is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
     <StandardDirectory Id="ProgramFiles64Folder">
-      <Directory Id="INSTALLFOLDER" Name="SensorPanel" />
+      <Directory Id="INSTALLFOLDER" Name="Vaka" />
     </StandardDirectory>
 
     <ComponentGroup Id="AppFiles" Directory="INSTALLFOLDER">
       <!-- The exe is authored explicitly so the custom actions below can run it. -->
       <Component>
-        <File Id="SensorPanelExe" Source="$(AppDir)\SensorPanel.exe" KeyPath="yes" />
+        <File Id="VakaExe" Source="$(AppDir)\Vaka.exe" KeyPath="yes" />
         <!-- Where the bundle's "Launch" button finds the exe to start elevated. -->
-        <RegistryValue Root="HKLM" Key="SOFTWARE\SensorPanel" Name="LaunchPath" Type="string"
-                       Value="[#SensorPanelExe]" />
+        <RegistryValue Root="HKLM" Key="SOFTWARE\Vaka" Name="LaunchPath" Type="string"
+                       Value="[#VakaExe]" />
       </Component>
       <Files Include="$(AppDir)\**">
-        <Exclude Files="$(AppDir)\SensorPanel.exe" />
+        <Exclude Files="$(AppDir)\Vaka.exe" />
         <Exclude Files="$(AppDir)\**\*.pdb" />
       </Files>
     </ComponentGroup>
@@ -40,7 +40,7 @@
       is still exiting during InstallValidate makes it raise a files-in-use prompt, which under the setup bundle
       stalls ~95 s even when quiet. Only our own presentmon.exe is waited on; other PresentMon copies are left alone.
     -->
-    <?define StopCmd = ""[System64Folder]WindowsPowerShell\v1.0\powershell.exe" -NoP -NonI -C "$s=@(ps SensorPanel -EA 0);$m=@(ps presentmon -EA 0|where Path -like '[INSTALLFOLDER]*');$s|kill -Force -EA 0;$s+$m|Wait-Process -Timeout 20 -EA 0"" ?>
+    <?define StopCmd = ""[System64Folder]WindowsPowerShell\v1.0\powershell.exe" -NoP -NonI -C "$s=@(ps Vaka,SensorPanel -EA 0);$m=@(ps presentmon -EA 0|where Path -like '[INSTALLFOLDER]*');$s|kill -Force -EA 0;$s+$m|Wait-Process -Timeout 20 -EA 0"" ?>
     <SetProperty Id="WixQuietExec64CmdLine" Sequence="execute" Before="StopPanelEarly" Value="$(StopCmd)" />
     <CustomAction Id="StopPanelEarly" BinaryRef="Wix4UtilCA_X64" DllEntry="WixQuietExec64"
                   Execute="immediate" Return="ignore" />
@@ -49,14 +49,14 @@
                   Execute="deferred" Impersonate="no" Return="ignore" />
 
     <!-- Logon task for every user (the MSI runs these as SYSTEM, so a per-user task would target SYSTEM). -->
-    <CustomAction Id="InstallStartup" FileRef="SensorPanelExe" ExeCommand="--install-startup --all-users"
+    <CustomAction Id="InstallStartup" FileRef="VakaExe" ExeCommand="--install-startup --all-users"
                   Execute="deferred" Impersonate="no" Return="check" />
-    <CustomAction Id="UninstallStartup" FileRef="SensorPanelExe" ExeCommand="--uninstall-startup"
+    <CustomAction Id="UninstallStartup" FileRef="VakaExe" ExeCommand="--uninstall-startup"
                   Execute="deferred" Impersonate="no" Return="ignore" />
     <!-- If the install/uninstall fails later and rolls back, undo the task change too (scheduled just before each). -->
-    <CustomAction Id="RollbackInstallStartup" FileRef="SensorPanelExe" ExeCommand="--uninstall-startup"
+    <CustomAction Id="RollbackInstallStartup" FileRef="VakaExe" ExeCommand="--uninstall-startup"
                   Execute="rollback" Impersonate="no" Return="ignore" />
-    <CustomAction Id="RollbackUninstallStartup" FileRef="SensorPanelExe" ExeCommand="--install-startup --all-users"
+    <CustomAction Id="RollbackUninstallStartup" FileRef="VakaExe" ExeCommand="--install-startup --all-users"
                   Execute="rollback" Impersonate="no" Return="ignore" />
 
     <InstallExecuteSequence>

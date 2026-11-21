@@ -1,6 +1,6 @@
 # Landing page — design
 
-**Status:** awaiting approval (2026-11-20). Decided in conversation: "a hero that looks alive, and show the
+**Status:** approved (2026-11-20). Decided in conversation: "a hero that looks alive, and show the
 templates … mock 2-3 sensor states and rotate through them"; approach A ("A is fine"); "use vite, ts and MUI just
 for consistency".
 

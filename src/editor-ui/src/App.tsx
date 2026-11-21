@@ -23,7 +23,7 @@ async function init() {
   if (started) return;
   started = true;
   if (!hasToken()) {
-    setState({ fatal: 'Open the editor from the Sensor Panel tray icon (right-click → Open editor).' });
+    setState({ fatal: 'Open the editor from the Vaka tray icon (right-click → Open editor).' });
     return;
   }
   // Debug / screenshot helpers: #layout=GPU.json&sel=widgets:3, #group=CPU card, #sensors

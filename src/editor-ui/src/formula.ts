@@ -1,6 +1,6 @@
 /*
  * Computed-alias formulas, e.g. "(cpu.power + gpu.power + 50) / 0.88".
- * Twin of src/SensorPanel/Layout/Formula.cs — keep the grammar in sync:
+ * Twin of src/Vaka/Layout/Formula.cs — keep the grammar in sync:
  *   numbers, keys (cpu.power), [any-key or /raw/id], + - * /, ( ), min/max/abs(…), a ?? b.
  * A missing value (or ÷0) makes the result null unless caught by ??.
  */

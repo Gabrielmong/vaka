@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Vaka/Vaka.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Vaka.Tests/Vaka.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/SensorProbe/SensorProbe.csproj" />
+  </Folder>
+</Solution>
