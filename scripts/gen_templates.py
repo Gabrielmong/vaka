@@ -55,6 +55,11 @@ def lin(angle, *colors):
     return {'kind': 'linear', 'angle': angle, 'colors': list(colors)}
 
 
+def glow(color, alpha):
+    """Radial gradient from color at the centre to fully transparent at the edge."""
+    return {'kind': 'radial', 'colors': [f'{color}{alpha:02x}', f'{color}00']}
+
+
 TEMP_TH = [{'gte': 80, 'color': '#ffb347'}, {'gte': 90, 'color': '#ff5a5a'}]
 LOAD_TH = [{'gte': 85, 'color': '#ffb347'}, {'gte': 95, 'color': '#ff5a5a'}]
 
@@ -436,6 +441,95 @@ def synthwave():
           text(576, 398, '$gpu.name', 13, '#ffb3e6', F, 600, 'right', 200)]
     W += [text(24, 420, '{cpu.clock:0.00} GHz · {cpu.power:0} W', 18, '#ffffff', F, 600),
           text(576, 420, '{gpu.clock:0.00} GHz · {gpu.power:0} W', 18, '#ffffff', F, 600, 'right', 200)]
+    return S, W
+
+
+# ─────────────────────────────────────────────────────────────── 11. Terminal
+@template('terminal', 'Terminal', 'Green phosphor on black: a console-style readout of CPU, GPU, memory and disk with a load graph.',
+          ['CPU', 'GPU', 'RAM', 'VRAM', 'Drives', 'Network', 'Power', 'FPS', 'Clock'], '#030803')
+def terminal():
+    S, W = [], []
+    G, DIM, DARK, F = '#39ff6a', '#1f9a42', '#0c2612', 'Consolas'
+    group('Scanlines')
+    S += [line(0, y, 800, y, '#000000', 1, opacity=0.35) for y in range(2, 480, 4)]
+    group('Header')
+    S += [text(24, 16, 'panel@sensors:~$ watch -n1 status', 16, DIM, F),
+          line(24, 46, 776, 46, DIM, 1)]
+    W += [text(576, 16, '{time:HH:mm:ss}', 16, G, F, 400, 'right', 200)]
+    rows = [('CPU', '{cpu.temp:0}°C {cpu.clock:0.00}GHz {cpu.power:0}W', 'cpu.load', '{cpu.load:0}%'),
+            ('GPU', '{gpu.temp:0}°C {gpu.clock:0.00}GHz {gpu.power:0}W', 'gpu.load', '{gpu.load:0}%'),
+            ('MEM', '{ram.used:0.0}G used {ram.free:0.0}G free', 'ram.load', '{ram.load:0}%'),
+            ('VRAM', '{vram.used:0.0}G of {vram.total:0}G', 'vram.load', '{vram.load:0}%'),
+            ('DISK', '$drive1 {drive.$1.freeGB:0}G free', 'drive.$1.usedPct', '{drive.$1.usedPct:0}%')]
+    for i, (title, fmt, key, pct) in enumerate(rows):
+        y = 64 + i * 38
+        group(title.title())
+        S += [text(24, y, title, 16, DIM, F, 700)]
+        W += [text(88, y, fmt, 16, G, F),
+              bar(400, y + 3, 290, 14, key, G, DARK, th=LOAD_TH),
+              text(696, y, pct, 16, G, F, 700, 'right', 80, value=key, th=LOAD_TH)]
+    group('Load graph')
+    S += [line(24, 258, 776, 258, DIM, 1),
+          text(24, 272, '$ cpu load, last 2 min', 14, DIM, F),
+          rect(24, 298, 400, 136, None, 0, DIM, 1)]
+    W += [graph(26, 300, 396, 132, 'cpu.load', G, 0, 100, 120, 1.5, G + '1f', grid=3, grid_color=DARK)]
+    group('Stats')
+    stats = [('FPS', '{fps:0}  (1% low {fps.low1:0})'), ('POWER', '{system.power:0} W'),
+             ('NET', '↓{net.down:0.00} ↑{net.up:0.00} MB/s'), ('DISK I/O', 'r {disk.read:0.0} w {disk.write:0.0} MB/s'),
+             ('DATE', '{date:yyyy-MM-dd ddd}')]
+    for i, (title, fmt) in enumerate(stats):
+        y = 272 + i * 30
+        S += [text(452, y, title, 14, DIM, F, 700)]
+        W += [text(548, y, fmt, 14, G, F)]
+    group('Prompt')
+    S += [text(24, 446, 'panel@sensors:~$', 16, DIM, F), rect(186, 448, 10, 18, G)]
+    return S, W
+
+
+# ─────────────────────────────────────────────────────────────── 12. Aurora
+@template('aurora', 'Aurora', 'Frosted glass cards over a soft violet-to-teal glow: CPU and GPU rings, memory, network and the time.',
+          ['CPU', 'GPU', 'RAM', 'VRAM', 'Network', 'Power', 'FPS', 'Clock'], '#120c2a')
+def aurora():
+    S, W = [], []
+    V, T, F, soft, glass, edge, track = '#a78bfa', '#2dd4bf', 'Segoe UI Variable', '#c4c0e0', '#ffffff14', '#ffffff2e', '#ffffff1a'
+    group('Glow')
+    S += [rect(0, 0, 800, 480, gradient=lin(135, '#140d33', '#1b2a5c', '#0c4a4f')),
+          # Soft glows: circles whose radial gradient fades to transparent at the edge.
+          ellipse(0, 0, 440, 440, gradient=glow('#7c3aed', 0x70)),
+          ellipse(360, 40, 440, 440, gradient=glow('#14b8a6', 0x60)),
+          ellipse(220, 100, 340, 340, gradient=glow('#3b82f6', 0x30))]
+    group('Time')
+    S += [rect(16, 16, 368, 216, glass, 20, edge, 1)]
+    W += [text(16, 34, '{time:HH:mm}', 88, '#ffffff', F, 300, 'center', 368),
+          text(16, 146, '{date:dddd d MMMM}', 18, soft, F, 400, 'center', 368),
+          text(16, 184, '{system.power:0} W  ·  {fps:0} FPS', 16, T, F, 600, 'center', 368)]
+    group('Memory')
+    S += [rect(16, 248, 368, 216, glass, 20, edge, 1)]
+    for i, (key, title, fmt, color) in enumerate([('ram', 'Memory', '{ram.used:0.0} GB used · {ram.free:0.0} free', V),
+                                                  ('vram', 'Video memory', '{vram.used:0.0} GB of {vram.total:0} GB', T)]):
+        y = 268 + i * 66
+        S += [text(36, y, title, 14, soft, F, 600)]
+        W += [text(36, y, fmt, 14, '#ffffff', F, 400, 'right', 328),
+              bar(36, y + 28, 328, 8, f'{key}.load', color, track, radius=4, gradient=lin(0, V, T), th=LOAD_TH)]
+    S += [text(36, 404, 'Network', 14, soft, F, 600)]
+    W += [text(36, 428, '↓ {net.down:0.00} MB/s', 16, '#ffffff', F),
+          text(200, 428, '↑ {net.up:0.00} MB/s', 16, soft, F, 400, 'right', 164)]
+    for i, who in enumerate(('cpu', 'gpu')):
+        x, y = 400, 16 + i * 232
+        group(who.upper())
+        S += [rect(x, y, 384, 216, glass, 20, edge, 1),
+              text(x + 196, y + 22, who.upper(), 13, T if who == 'gpu' else V, F, 700),
+              text(x + 196, y + 40, f'${who}.name', 13, soft, F, 400, 'left', 168),
+              text(x + 196, y + 122, 'LOAD', 11, soft, F, 600),
+              text(x + 196, y + 164, 'CLOCK', 11, soft, F, 600),
+              text(x + 290, y + 164, 'POWER', 11, soft, F, 600)]
+        W += [ring(x + 24, y + 28, 160, f'{who}.temp', V, track, 20, 100, 12, gradient=lin(0, V, T), th=TEMP_TH),
+              text(x + 24, y + 82, f'{{{who}.temp:0}}°', 44, '#ffffff', F, 300, 'center', 160, value=f'{who}.temp', th=TEMP_TH),
+              text(x + 24, y + 140, 'TEMP', 11, soft, F, 600, 'center', 160),
+              text(x + 196, y + 72, f'{{{who}.load:0}}%', 36, '#ffffff', F, 300),
+              bar(x + 196, y + 140, 164, 6, f'{who}.load', V, track, radius=3, gradient=lin(0, V, T), th=LOAD_TH),
+              text(x + 196, y + 180, f'{{{who}.clock:0.00}} GHz', 15, '#ffffff', F),
+              text(x + 290, y + 180, f'{{{who}.power:0}} W', 15, '#ffffff', F)]
     return S, W
 
 

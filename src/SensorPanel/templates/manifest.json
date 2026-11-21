@@ -125,5 +125,36 @@
       "FPS",
       "Clock"
     ]
+  },
+  {
+    "id": "terminal",
+    "name": "Terminal",
+    "description": "Green phosphor on black: a console-style readout of CPU, GPU, memory and disk with a load graph.",
+    "shows": [
+      "CPU",
+      "GPU",
+      "RAM",
+      "VRAM",
+      "Drives",
+      "Network",
+      "Power",
+      "FPS",
+      "Clock"
+    ]
+  },
+  {
+    "id": "aurora",
+    "name": "Aurora",
+    "description": "Frosted glass cards over a soft violet-to-teal glow: CPU and GPU rings, memory, network and the time.",
+    "shows": [
+      "CPU",
+      "GPU",
+      "RAM",
+      "VRAM",
+      "Network",
+      "Power",
+      "FPS",
+      "Clock"
+    ]
   }
 ]

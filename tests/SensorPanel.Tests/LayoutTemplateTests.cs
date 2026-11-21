@@ -20,7 +20,7 @@ public class LayoutTemplateTests
     public void ManifestMatchesFiles()
     {
         var ids = TemplateLibrary.All.Select(t => t.Id).ToList();
-        Assert.Equal(10, ids.Count);
+        Assert.Equal(12, ids.Count);
         Assert.Equal(ids.Count, ids.Distinct().Count());
         foreach (var t in TemplateLibrary.All)
         {

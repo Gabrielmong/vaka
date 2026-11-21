@@ -1,0 +1,773 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 800,
+    "height": 480,
+    "background": "#120c2a"
+  },
+  "scale": "fit",
+  "aliases": {},
+  "static": [
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 480,
+      "group": "Glow",
+      "radius": 0,
+      "strokeWidth": 1,
+      "gradient": {
+        "kind": "linear",
+        "angle": 135,
+        "colors": [
+          "#140d33",
+          "#1b2a5c",
+          "#0c4a4f"
+        ]
+      }
+    },
+    {
+      "type": "ellipse",
+      "x": 0,
+      "y": 0,
+      "w": 440,
+      "h": 440,
+      "group": "Glow",
+      "strokeWidth": 1,
+      "gradient": {
+        "kind": "radial",
+        "colors": [
+          "#7c3aed70",
+          "#7c3aed00"
+        ]
+      }
+    },
+    {
+      "type": "ellipse",
+      "x": 360,
+      "y": 40,
+      "w": 440,
+      "h": 440,
+      "group": "Glow",
+      "strokeWidth": 1,
+      "gradient": {
+        "kind": "radial",
+        "colors": [
+          "#14b8a660",
+          "#14b8a600"
+        ]
+      }
+    },
+    {
+      "type": "ellipse",
+      "x": 220,
+      "y": 100,
+      "w": 340,
+      "h": 340,
+      "group": "Glow",
+      "strokeWidth": 1,
+      "gradient": {
+        "kind": "radial",
+        "colors": [
+          "#3b82f630",
+          "#3b82f600"
+        ]
+      }
+    },
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 16,
+      "w": 368,
+      "h": 216,
+      "group": "Time",
+      "fill": "#ffffff14",
+      "radius": 20,
+      "stroke": "#ffffff2e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 16,
+      "y": 248,
+      "w": 368,
+      "h": 216,
+      "group": "Memory",
+      "fill": "#ffffff14",
+      "radius": 20,
+      "stroke": "#ffffff2e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 268,
+      "w": 0,
+      "h": 0,
+      "group": "Memory",
+      "text": "Memory",
+      "font": "Segoe UI Variable",
+      "size": 14,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 334,
+      "w": 0,
+      "h": 0,
+      "group": "Memory",
+      "text": "Video memory",
+      "font": "Segoe UI Variable",
+      "size": 14,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 404,
+      "w": 0,
+      "h": 0,
+      "group": "Memory",
+      "text": "Network",
+      "font": "Segoe UI Variable",
+      "size": 14,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "rect",
+      "x": 400,
+      "y": 16,
+      "w": 384,
+      "h": 216,
+      "group": "CPU",
+      "fill": "#ffffff14",
+      "radius": 20,
+      "stroke": "#ffffff2e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 38,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "CPU",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#a78bfa"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 56,
+      "w": 168,
+      "h": 0,
+      "group": "CPU",
+      "text": "$cpu.name",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 138,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "LOAD",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 180,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "CLOCK",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 690,
+      "y": 180,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "POWER",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "rect",
+      "x": 400,
+      "y": 248,
+      "w": 384,
+      "h": 216,
+      "group": "GPU",
+      "fill": "#ffffff14",
+      "radius": 20,
+      "stroke": "#ffffff2e",
+      "strokeWidth": 1
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 270,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "GPU",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 700,
+      "align": "left",
+      "color": "#2dd4bf"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 288,
+      "w": 168,
+      "h": 0,
+      "group": "GPU",
+      "text": "$gpu.name",
+      "font": "Segoe UI Variable",
+      "size": 13,
+      "weight": 400,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 370,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "LOAD",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 412,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "CLOCK",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 690,
+      "y": 412,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "POWER",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "left",
+      "color": "#c4c0e0"
+    }
+  ],
+  "widgets": [
+    {
+      "type": "text",
+      "x": 16,
+      "y": 34,
+      "w": 368,
+      "h": 0,
+      "group": "Time",
+      "text": "{time:HH:mm}",
+      "font": "Segoe UI Variable",
+      "size": 88,
+      "weight": 300,
+      "align": "center",
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 146,
+      "w": 368,
+      "h": 0,
+      "group": "Time",
+      "text": "{date:dddd d MMMM}",
+      "font": "Segoe UI Variable",
+      "size": 18,
+      "weight": 400,
+      "align": "center",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 184,
+      "w": 368,
+      "h": 0,
+      "group": "Time",
+      "text": "{system.power:0} W  ·  {fps:0} FPS",
+      "font": "Segoe UI Variable",
+      "size": 16,
+      "weight": 600,
+      "align": "center",
+      "color": "#2dd4bf"
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 268,
+      "w": 328,
+      "h": 0,
+      "group": "Memory",
+      "text": "{ram.used:0.0} GB used · {ram.free:0.0} free",
+      "font": "Segoe UI Variable",
+      "size": 14,
+      "weight": 400,
+      "align": "right",
+      "color": "#ffffff"
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 296,
+      "w": 328,
+      "h": 8,
+      "group": "Memory",
+      "value": "ram.load",
+      "min": 0,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#ffffff1a",
+      "radius": 4,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#2dd4bf"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 334,
+      "w": 328,
+      "h": 0,
+      "group": "Memory",
+      "text": "{vram.used:0.0} GB of {vram.total:0} GB",
+      "font": "Segoe UI Variable",
+      "size": 14,
+      "weight": 400,
+      "align": "right",
+      "color": "#ffffff"
+    },
+    {
+      "type": "bar",
+      "x": 36,
+      "y": 362,
+      "w": 328,
+      "h": 8,
+      "group": "Memory",
+      "value": "vram.load",
+      "min": 0,
+      "max": 100,
+      "color": "#2dd4bf",
+      "track": "#ffffff1a",
+      "radius": 4,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#2dd4bf"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 36,
+      "y": 428,
+      "w": 0,
+      "h": 0,
+      "group": "Memory",
+      "text": "↓ {net.down:0.00} MB/s",
+      "font": "Segoe UI Variable",
+      "size": 16,
+      "weight": 400,
+      "align": "left",
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "x": 200,
+      "y": 428,
+      "w": 164,
+      "h": 0,
+      "group": "Memory",
+      "text": "↑ {net.up:0.00} MB/s",
+      "font": "Segoe UI Variable",
+      "size": 16,
+      "weight": 400,
+      "align": "right",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "ring",
+      "x": 424,
+      "y": 44,
+      "w": 160,
+      "h": 160,
+      "group": "CPU",
+      "value": "cpu.temp",
+      "min": 20,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#ffffff1a",
+      "thickness": 12,
+      "startAngle": 135,
+      "sweep": 270,
+      "roundCap": true,
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#2dd4bf"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 424,
+      "y": 98,
+      "w": 160,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.temp:0}°",
+      "font": "Segoe UI Variable",
+      "size": 44,
+      "weight": 300,
+      "align": "center",
+      "color": "#ffffff",
+      "value": "cpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 424,
+      "y": 156,
+      "w": 160,
+      "h": 0,
+      "group": "CPU",
+      "text": "TEMP",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "center",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 88,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.load:0}%",
+      "font": "Segoe UI Variable",
+      "size": 36,
+      "weight": 300,
+      "align": "left",
+      "color": "#ffffff"
+    },
+    {
+      "type": "bar",
+      "x": 596,
+      "y": 156,
+      "w": 164,
+      "h": 6,
+      "group": "CPU",
+      "value": "cpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#ffffff1a",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#2dd4bf"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 196,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.clock:0.00} GHz",
+      "font": "Segoe UI Variable",
+      "size": 15,
+      "weight": 400,
+      "align": "left",
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "x": 690,
+      "y": 196,
+      "w": 0,
+      "h": 0,
+      "group": "CPU",
+      "text": "{cpu.power:0} W",
+      "font": "Segoe UI Variable",
+      "size": 15,
+      "weight": 400,
+      "align": "left",
+      "color": "#ffffff"
+    },
+    {
+      "type": "ring",
+      "x": 424,
+      "y": 276,
+      "w": 160,
+      "h": 160,
+      "group": "GPU",
+      "value": "gpu.temp",
+      "min": 20,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#ffffff1a",
+      "thickness": 12,
+      "startAngle": 135,
+      "sweep": 270,
+      "roundCap": true,
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#2dd4bf"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 424,
+      "y": 330,
+      "w": 160,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.temp:0}°",
+      "font": "Segoe UI Variable",
+      "size": 44,
+      "weight": 300,
+      "align": "center",
+      "color": "#ffffff",
+      "value": "gpu.temp",
+      "thresholds": [
+        {
+          "gte": 80,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 90,
+          "color": "#ff5a5a"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "x": 424,
+      "y": 388,
+      "w": 160,
+      "h": 0,
+      "group": "GPU",
+      "text": "TEMP",
+      "font": "Segoe UI Variable",
+      "size": 11,
+      "weight": 600,
+      "align": "center",
+      "color": "#c4c0e0"
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 320,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.load:0}%",
+      "font": "Segoe UI Variable",
+      "size": 36,
+      "weight": 300,
+      "align": "left",
+      "color": "#ffffff"
+    },
+    {
+      "type": "bar",
+      "x": 596,
+      "y": 388,
+      "w": 164,
+      "h": 6,
+      "group": "GPU",
+      "value": "gpu.load",
+      "min": 0,
+      "max": 100,
+      "color": "#a78bfa",
+      "track": "#ffffff1a",
+      "radius": 3,
+      "vertical": false,
+      "thresholds": [
+        {
+          "gte": 85,
+          "color": "#ffb347"
+        },
+        {
+          "gte": 95,
+          "color": "#ff5a5a"
+        }
+      ],
+      "gradient": {
+        "kind": "linear",
+        "angle": 0,
+        "colors": [
+          "#a78bfa",
+          "#2dd4bf"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "x": 596,
+      "y": 428,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.clock:0.00} GHz",
+      "font": "Segoe UI Variable",
+      "size": 15,
+      "weight": 400,
+      "align": "left",
+      "color": "#ffffff"
+    },
+    {
+      "type": "text",
+      "x": 690,
+      "y": 428,
+      "w": 0,
+      "h": 0,
+      "group": "GPU",
+      "text": "{gpu.power:0} W",
+      "font": "Segoe UI Variable",
+      "size": 15,
+      "weight": 400,
+      "align": "left",
+      "color": "#ffffff"
+    }
+  ]
+}

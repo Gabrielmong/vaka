@@ -111,7 +111,10 @@ export function TemplateGallery() {
         <Box sx={{ display: 'grid', gap: 2, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
           {(templates ?? []).map(t => (
             <Card key={t.id} variant="outlined">
-              <CardActionArea disabled={busy || !layouts[t.id]} onClick={() => void pick(t)} sx={{ height: '100%', alignItems: 'stretch' }}>
+              <CardActionArea disabled={busy || !layouts[t.id]} onClick={() => void pick(t)} 
+                // A <button> centres its content vertically; cards in a row share the tallest height, so lay the
+                // content out as a top-aligned column to keep every preview at the top edge.
+                sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'stretch' }}>
                 {images[t.id]
                   ? <Box component="img" src={images[t.id]} alt={`${t.name} preview`}
                       sx={{ display: 'block', width: '100%', aspectRatio: '5 / 3', objectFit: 'contain', bgcolor: '#000' }} />

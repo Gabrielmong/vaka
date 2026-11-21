@@ -35,8 +35,8 @@ panel at the same time (both read the Super I/O chip).
   comments in the file are dropped.
 - **First run:** with no layouts yet, the panel creates `default.json` from the **Duo** template,
   matched to this PC's sensors and fitted to the panel's screen.
-- **Templates:** layout menu → **New from template…** opens a gallery of ten designs (Duo, Gauges,
-  Trends, Gaming HUD, Cooling, Clock, Power, Overview, Storage & Net, Synthwave), each previewed live
+- **Templates:** layout menu → **New from template…** opens a gallery of twelve designs (Duo, Gauges,
+  Trends, Gaming HUD, Cooling, Clock, Power, Overview, Storage & Net, Synthwave, Terminal, Aurora), each previewed live
   with your own sensors. Picking one finds the CPU/GPU temperatures, loads, clocks, power, fans,
   pump, RAM/VRAM, system disk, network and drives on this PC and points the standard aliases
   (`cpu.temp`, `gpu.load`, `fan.1`, `drive.$1`…) at them. Anything the PC doesn't have shows `--`
