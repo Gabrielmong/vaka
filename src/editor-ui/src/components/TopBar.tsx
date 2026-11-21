@@ -82,7 +82,7 @@ export function TopBar() {
     <AppBar position="static" color="default" elevation={0} sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: 'background.paper' }}>
       <Toolbar variant="dense" sx={{ gap: 1.5 }}>
         <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mr: 1 }}>
-          <Box sx={{ width: 18, height: 18, borderRadius: '50%', border: '3px solid', borderColor: 'primary.main', borderBottomColor: 'transparent', transform: 'rotate(40deg)' }} />
+          <Box component="img" src="/favicon.svg" alt="" sx={{ width: 24, height: 24, display: 'block' }} />
           <Typography variant="subtitle1" sx={{ fontWeight: 600, color: 'text.secondary' }}>Vaka</Typography>
           <Typography color="text.disabled">/</Typography>
           <LayoutMenu />

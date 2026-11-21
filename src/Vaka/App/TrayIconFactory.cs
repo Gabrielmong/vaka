@@ -1,31 +1,17 @@
-using System.Drawing.Drawing2D;
-using System.Runtime.InteropServices;
+using System.Reflection;
 
 namespace Vaka.App;
 
-/// <summary>Draws a small ring-gauge icon so we don't need an .ico asset.</summary>
+/// <summary>The Vaka mark (vaka.ico, made by scripts/make-icons.ps1 from branding/vaka.svg), also the exe's icon.</summary>
 internal static class TrayIconFactory
 {
-    public static Icon Create()
-    {
-        using var bmp = new Bitmap(32, 32);
-        using (var g = Graphics.FromImage(bmp))
-        {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.Clear(Color.Transparent);
-            using var bg = new SolidBrush(Color.FromArgb(30, 30, 30));
-            g.FillEllipse(bg, 1, 1, 30, 30);
-            using var track = new Pen(Color.FromArgb(80, 80, 80), 4);
-            g.DrawEllipse(track, 6, 6, 20, 20);
-            using var arc = new Pen(Color.White, 4);
-            g.DrawArc(arc, 6, 6, 20, 20, 140, 250);
-        }
-        var hIcon = bmp.GetHicon();
-        var icon = (Icon)Icon.FromHandle(hIcon).Clone();
-        DestroyIcon(hIcon);
-        return icon;
-    }
+    /// <summary>The icon at the system's small-icon size (16 px at 100% scaling, 20 at 125%, ...).</summary>
+    public static Icon Create() => Create(SystemInformation.SmallIconSize.Width);
 
-    [DllImport("user32.dll")]
-    private static extern bool DestroyIcon(IntPtr hIcon);
+    public static Icon Create(int size)
+    {
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("vaka.ico")
+            ?? throw new InvalidOperationException("vaka.ico is not embedded");
+        return new Icon(stream, size, size);
+    }
 }

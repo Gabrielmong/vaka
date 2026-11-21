@@ -24,7 +24,10 @@ export function Hero({ manifest, failed, templateId }: { manifest: Manifest | nu
   return (
     <Box component="header" sx={{ maxWidth: 1180, mx: 'auto', px: { xs: 2, sm: 4 }, pt: { xs: 3, md: 4 }, pb: { xs: 6, md: 9 } }}>
       <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', mb: { xs: 5, md: 8 } }}>
-        <Typography component="span" variant="h3">Vaka</Typography>
+        <Stack direction="row" spacing={1.25} sx={{ alignItems: 'center' }}>
+          <Box component="img" src="./favicon.svg" alt="" sx={{ width: 40, height: 40, display: 'block' }} />
+          <Typography component="span" variant="h3">Vaka</Typography>
+        </Stack>
         <Link href={repoUrl} underline="hover" color="text.secondary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.75 }}>
           <GitHubIcon fontSize="small" />Source
         </Link>

@@ -8,6 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Made by scripts/make-icons.ps1 from branding/vaka.svg; also embedded for the tray icon. -->
+    <ApplicationIcon>vaka.ico</ApplicationIcon>
     <AssemblyName>Vaka</AssemblyName>
     <RootNamespace>Vaka</RootNamespace>
     <!-- Keep memory low: workstation, non-concurrent GC -->
@@ -23,6 +25,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="templates\*.json" LogicalName="templates/%(Filename)%(Extension)" />
+    <EmbeddedResource Include="vaka.ico" LogicalName="vaka.ico" />
   </ItemGroup>
 
   <!--
@@ -34,7 +37,7 @@
     <EditorUiDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)\..\editor-ui'))\</EditorUiDir>
   </PropertyGroup>
   <ItemGroup>
-    <EditorUiSource Include="$(EditorUiDir)src\**\*;$(EditorUiDir)index.html;$(EditorUiDir)package.json;$(EditorUiDir)package-lock.json;$(EditorUiDir)vite.config.ts;$(EditorUiDir)tsconfig.json" />
+    <EditorUiSource Include="$(EditorUiDir)src\**\*;$(EditorUiDir)index.html;$(EditorUiDir)public\**\*;$(EditorUiDir)package.json;$(EditorUiDir)package-lock.json;$(EditorUiDir)vite.config.ts;$(EditorUiDir)tsconfig.json" />
   </ItemGroup>
 
   <Target Name="EditorUiInstall" Condition="'$(SkipEditorUi)' != 'true' And !Exists('$(EditorUiDir)node_modules')">
